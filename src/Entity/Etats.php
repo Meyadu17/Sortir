@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ETATSRepository;
+use App\Repository\EtatsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ETATSRepository::class)
+ * @ORM\Entity(repositoryClass=EtatsRepository::class)
  */
-class ETATS
+class Etats
 {
     /**
      * @ORM\Id
@@ -16,11 +16,6 @@ class ETATS
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $no_etat;
 
     /**
      * @ORM\Column(type="string", length=30)
@@ -32,17 +27,6 @@ class ETATS
         return $this->id;
     }
 
-    public function getNoEtat(): ?int
-    {
-        return $this->no_etat;
-    }
-
-    public function setNoEtat(int $no_etat): self
-    {
-        $this->no_etat = $no_etat;
-
-        return $this;
-    }
 
     public function getLibelle(): ?string
     {

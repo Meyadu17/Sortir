@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\SORTIESRepository;
+use App\Repository\SortiesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=SORTIESRepository::class)
+ * @ORM\Entity(repositoryClass=SortiesRepository::class)
  */
-class SORTIES
+class Sorties
 {
     /**
      * @ORM\Id
@@ -16,11 +16,6 @@ class SORTIES
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $no_sortie;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -80,18 +75,6 @@ class SORTIES
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getNoSortie(): ?int
-    {
-        return $this->no_sortie;
-    }
-
-    public function setNoSortie(int $no_sortie): self
-    {
-        $this->no_sortie = $no_sortie;
-
-        return $this;
     }
 
     public function getNom(): ?string

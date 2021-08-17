@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\PARTICIPANTSRepository;
+use App\Repository\ParticipantsRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
- * @ORM\Entity(repositoryClass=PARTICIPANTSRepository::class)
+ * @ORM\Entity(repositoryClass=ParticipantsRepository::class)
+ * @UniqueEntity(fields="pseudo", message="ce pseudo est déjà utilisé.")
  */
-class PARTICIPANTS
+class Participants
 {
     /**
      * @ORM\Id
@@ -16,11 +17,6 @@ class PARTICIPANTS
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $no_participant;
 
     /**
      * @ORM\Column(type="string", length=30)
@@ -70,18 +66,6 @@ class PARTICIPANTS
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getNoParticipant(): ?int
-    {
-        return $this->no_participant;
-    }
-
-    public function setNoParticipant(int $no_participant): self
-    {
-        $this->no_participant = $no_participant;
-
-        return $this;
     }
 
     public function getPseudo(): ?string

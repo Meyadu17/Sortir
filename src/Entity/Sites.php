@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\SITESRepository;
+use App\Repository\SitesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=SITESRepository::class)
+ * @ORM\Entity(repositoryClass=SitesRepository::class)
  */
-class SITES
+class Sites
 {
     /**
      * @ORM\Id
@@ -18,11 +18,6 @@ class SITES
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $no_site;
-
-    /**
      * @ORM\Column(type="string", length=30)
      */
     private $nom_site;
@@ -30,18 +25,6 @@ class SITES
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getNoSite(): ?int
-    {
-        return $this->no_site;
-    }
-
-    public function setNoSite(int $no_site): self
-    {
-        $this->no_site = $no_site;
-
-        return $this;
     }
 
     public function getNomSite(): ?string

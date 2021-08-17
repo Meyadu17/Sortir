@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\VILLESRepository;
+use App\Repository\VillesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=VILLESRepository::class)
+ * @ORM\Entity(repositoryClass=VillesRepository::class)
  */
-class VILLES
+class Villes
 {
     /**
      * @ORM\Id
@@ -16,11 +16,6 @@ class VILLES
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $no_ville;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -35,18 +30,6 @@ class VILLES
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getNoVille(): ?int
-    {
-        return $this->no_ville;
-    }
-
-    public function setNoVille(int $no_ville): self
-    {
-        $this->no_ville = $no_ville;
-
-        return $this;
     }
 
     public function getNomVille(): ?string

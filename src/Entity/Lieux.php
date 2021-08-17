@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\LIEUXRepository;
+use App\Repository\LieuxRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=LIEUXRepository::class)
+ * @ORM\Entity(repositoryClass=LieuxRepository::class)
  */
-class LIEUX
+class Lieux
 {
     /**
      * @ORM\Id
@@ -17,10 +17,6 @@ class LIEUX
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $no_lieu;
 
     /**
      * @ORM\Column(type="string", length=30)
@@ -52,17 +48,6 @@ class LIEUX
         return $this->id;
     }
 
-    public function getNoLieu(): ?int
-    {
-        return $this->no_lieu;
-    }
-
-    public function setNoLieu(int $no_lieu): self
-    {
-        $this->no_lieu = $no_lieu;
-
-        return $this;
-    }
 
     public function getNomLieu(): ?string
     {

@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\INSCRIPTIONSRepository;
+use App\Repository\InscriptionsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=INSCRIPTIONSRepository::class)
+ * @ORM\Entity(repositoryClass=InscriptionsRepository::class)
  */
-class INSCRIPTIONS
+class Inscriptions
 {
     /**
      * @ORM\Id
