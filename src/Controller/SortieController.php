@@ -1,4 +1,5 @@
 <?php
+namespace App\Controller;
 
 use App\Entity\Site;
 use App\Entity\Sortie;
@@ -11,8 +12,8 @@ class SortieController extends AbstractController
 {
     /**
      * @Route("/sortie{id}", name="sortie_detail",
-     *     requirements={"id":"\d+"}
-     *     methode={"GET"})
+     *     requirements={"id":"\d+"},
+     *     method={"GET"})
      */
     public function detail ($id)
     {
@@ -22,6 +23,7 @@ class SortieController extends AbstractController
             "sortie"=>$sortie
         ]);
     }
+
     /**
      * @Route ("/sortie/ajouter", name="sortie_ajouter")
      */

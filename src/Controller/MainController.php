@@ -1,5 +1,5 @@
 <?php
-namespace Ap\Controller;
+namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,35 +30,35 @@ Class MainController extends AbstractController
     }
 
     /**
-     * @Route ("/", name="afficherProfil"
+     * @Route ("/", name="afficherProfil")
      */
     public function afficherProfil()
     {
     }
 
     /**
-     * @Route ("/", name="creerSortie"
+     * @Route ("/", name="creerSortie")
      */
     public function creerSortie()
     {
     }
 
     /**
-     * @Route ("/", name="afficherSortie"
+     * @Route ("/", name="afficherSortie")
      */
     public function afficherSortie()
     {
     }
 
     /**
-     * @Route ("/", name="modifierSortie"
+     * @Route ("/", name="modifierSortie")
      */
     public function modifierSortie()
     {
     }
 
     /**
-     * @Route ("/", name="annuler"
+     * @Route ("/", name="annuler")
      */
     public function annuler()
     {
