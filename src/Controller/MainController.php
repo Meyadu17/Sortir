@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,7 +13,7 @@ Class MainController extends AbstractController
     public function connexion()
     {
 
-        return $this ->render("default/connexion");
+        return $this->render("default/connexion.html.twig");
     }
 
     /**
