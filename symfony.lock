@@ -13,5 +13,8 @@
         "files": [
             "./src/DataFixtures/AppFixtures.php"
         ]
+    },
+    "symfony/orm-pack": {
+        "version": "v2.1.0"
     }
 }
