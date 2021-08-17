@@ -1,11 +1,11 @@
 <?php
-
+use App\Entity\Site;
+use App\Entity\Sortie;
 use App\Form\SortieType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
 class SortieController extends AbstractController
 {
     /**
@@ -13,25 +13,21 @@ class SortieController extends AbstractController
      *     requirements={"id":"\d+"}
      *     methode={"GET"})
      */
-
     public function detail ($id)
     {
-        $sortieRepo = $this->getDoctrine()->getRepository(Site::class);
+        $sortieRepo = $this->getDoctrine()->getRepository(site::class);
         $sortie = $sortieRepo->find($id);
         return $this->render('sortie/detail.html.twig', [
             "sortie"=>$sortie
         ]);
     }
-
     /**
      * @Route ("/sortie/ajouter", name="sortie_ajouter")
      */
     public function ajouter (EntityManagerInterface $em, Request $request)
     {
         $sortie = new sortie;
-
         $sortieForm = $this->createForm(SortieType::class, $sortie);
-
         # Hydratation de l'instance Sortie avec les données qui proviennent de la requête
         # On utilise handleRequest et on y passe la requête en argument
         $sortieForm->handleRequest($request);
@@ -39,7 +35,10 @@ class SortieController extends AbstractController
         {
             $em->persist($sortie);
             $em->flush();
+<<<<<<< HEAD
 
+=======
+>>>>>>> b60ea6888201b68581df30bca7ad01b690ff46d5
             $this->addFlash('success', 'La sortie a bien été enregistée');
             return $this->render('sortie/ajouter.html.twig', [
                 "sortieForm"=>$sortieForm->createView()
