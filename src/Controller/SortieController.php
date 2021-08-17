@@ -1,5 +1,7 @@
 <?php
-class SortieController
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+Class SortieController extends AbstractController
 {
 
 }

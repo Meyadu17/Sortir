@@ -1,0 +1,24 @@
+{% extends '../base.html.twig' %}
+
+{% block main %}
+<div>
+    <form action="verification.php" method="POST">
+
+    <label><b>Identifiant :</b></label>
+    <input type="text" placeholder="Entrer votre identifiant" name="username" required><br>
+        <br>
+
+    <label><b>Mot de passe :</b></label>
+    <input type="password" placeholder="Entrer le mot de passe" name="password" required>
+
+    </form>
+
+    <input type="submit" id='submit' value='Connexion' >
+
+    <input type="checkbox" id="scales" name="scales" checked>
+    <label for="Se souvenir de moi">Se souvenir de moi </label><br>
+
+    <a href = " ">Mot de passe oublié</a><br>
+</div>
+{% endblock %}
+{% block titre %} Sortir | Connexion{% endblock %}
