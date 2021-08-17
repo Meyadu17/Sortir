@@ -1,5 +1,7 @@
 <?php
 
+use App\Entity\Site;
+use App\Entity\Sortie;
 use App\Form\SortieType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,7 +18,7 @@ class SortieController extends AbstractController
 
     public function detail ($id)
     {
-        $sortieRepo = $this->getDoctrine()->getRepository(Site::class);
+        $sortieRepo = $this->getDoctrine()->getRepository(site::class);
         $sortie = $sortieRepo->find($id);
         return $this->render('sortie/detail.html.twig', [
             "sortie"=>$sortie
@@ -40,7 +42,7 @@ class SortieController extends AbstractController
             $em->persist($sortie);
             $em->flush();
 
-            $this->addFlash('success', 'La sortie à bien été enregistée');
+            $this->addFlash('success', 'La sortie a bien été enregistée');
             return $this->render('sortie/ajouter.html.twig', [
                 "sortieForm"=>$sortieForm->createView()
             ]);
