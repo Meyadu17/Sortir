@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\LIEUX;
+use App\Entity\Lieu;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method LIEUX|null find($id, $lockMode = null, $lockVersion = null)
- * @method LIEUX|null findOneBy(array $criteria, array $orderBy = null)
- * @method LIEUX[]    findAll()
- * @method LIEUX[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Lieu|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Lieu|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Lieu[]    findAll()
+ * @method Lieu[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LIEUXRepository extends ServiceEntityRepository
+class LieuRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, LIEUX::class);
+        parent::__construct($registry, Lieu::class);
     }
 
     // /**
-    //  * @return LIEUX[] Returns an array of LIEUX objects
+    //  * @return Lieu[] Returns an array of Lieu objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class LIEUXRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?LIEUX
+    public function findOneBySomeField($value): ?Lieu
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.exampleField = :val')
