@@ -1,5 +1,5 @@
 <?php
-class SortieController extends
+class SortieController
 {
 
 }
