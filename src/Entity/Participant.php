@@ -67,6 +67,11 @@ class Participant
      */
     private $sites;
 
+    /**
+     * @ORM\Column(type="string", length=12)
+     */
+    private $pseudo;
+
     public function __construct()
     {
         $this->sortiesOrganisees = new ArrayCollection();
@@ -212,6 +217,18 @@ class Participant
     public function setSites(?Site $sites): self
     {
         $this->sites = $sites;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }
