@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Participant;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,10 +32,10 @@ class ProfilType extends AbstractType
             ->add('mail', TextType::class, [
                 'label' => 'Email : '
             ])
-            ->add('mail', TextType::class, [
+            ->add('mot_de_passe', PasswordType::class, [
                 'label' => 'Mot de passe : '
             ])
-            ->add('mail', TextType::class, [
+            ->add('mail', PasswordType::class, [
                 'label' => 'Confirmation : '
             ])
             ->add('sites', TextType::class, [

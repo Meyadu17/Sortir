@@ -72,6 +72,11 @@ class Participant
      */
     private $pseudo;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $mot_de_passe;
+
     public function __construct()
     {
         $this->sortiesOrganisees = new ArrayCollection();
@@ -229,6 +234,18 @@ class Participant
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getMotDePasse(): ?string
+    {
+        return $this->mot_de_passe;
+    }
+
+    public function setMotDePasse(string $mot_de_passe): self
+    {
+        $this->mot_de_passe = $mot_de_passe;
 
         return $this;
     }
