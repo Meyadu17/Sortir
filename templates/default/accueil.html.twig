@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block titre %} {% endblock %}
+{% block titre %}  {{ parent() }} | Accueil {% endblock %}
 
 {% block main %}
-
+    <div class="sortir">
+        <a href="{{ path('sortie_ajouter')}}"> Créer une sortie </a>
+    </div>
 {% endblock %}
