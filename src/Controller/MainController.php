@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 Class MainController extends AbstractController
 {
     /**
-     * @Route ("/", name="connexion")
+     * @Route ("Sortie/Connexion.php", name="connexion")
      */
     public function connexion()
     {
@@ -17,51 +17,27 @@ Class MainController extends AbstractController
     }
 
     /**
-     * @Route ("/", name="accueil")
+     * @Route ("Sortie/Accueil.php", name="accueil")
      */
     public function accueil()
     {
+        return $this->render("default/accueil.html.twig");
     }
 
     /**
-     * @Route ("/", name="profil")
+     * @Route("/MonProfil.php", name="mon_profil")
      */
-    public function profil()
+    public function monProfil()
     {
+        return $this->render("profil/monProfil.html.twig");
     }
 
     /**
-     * @Route ("/", name="afficherProfil")
+     * @Route("/profil.php?ID={id}", name="profil_detail", requirements={"id":"\d+"}, methods={"GET"})
      */
     public function afficherProfil()
     {
+        return $this->render("profil/profil.html.twig");
     }
 
-    /**
-     * @Route ("/", name="creerSortie")
-     */
-    public function creerSortie()
-    {
-    }
-
-    /**
-     * @Route ("/", name="afficherSortie")
-     */
-    public function afficherSortie()
-    {
-    }
-
-    /**
-     * @Route ("/", name="modifierSortie")
-     */
-    public function modifierSortie()
-    {
-    }
-
-    /**
-     * @Route ("/", name="annuler")
-     */
-    public function annuler()
-    {
-    }
 }
