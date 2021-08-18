@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 Class MainController extends AbstractController
 {
     /**
-     * @Route ("Sortie/Connexion.php", name="connexion")
+     * @Route ("Sortie", name="connexion")
      */
     public function connexion()
     {
