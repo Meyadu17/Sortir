@@ -36,32 +36,4 @@ Class MainController extends AbstractController
     public function afficherProfil()
     {
     }
-
-    /**
-     * @Route ("/", name="creerSortie")
-     */
-    public function creerSortie()
-    {
-    }
-
-    /**
-     * @Route ("/", name="afficherSortie")
-     */
-    public function afficherSortie()
-    {
-    }
-
-    /**
-     * @Route ("/", name="modifierSortie")
-     */
-    public function modifierSortie()
-    {
-    }
-
-    /**
-     * @Route ("/", name="annuler")
-     */
-    public function annuler()
-    {
-    }
 }
