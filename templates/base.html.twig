@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <header>
-        <h1>Sortir.com</h1>
+        <h1><a href="{{ path('connexion') }}" title="connexion">Sortir.com</a></h1>
 
         {% include ('inc/nav.html.twig')%}
         <hr>
@@ -23,8 +23,9 @@
     </main>
 
     <footer>
+        <hr>
         © {{ "now"|date("Y") }} Sortir
-        <p>By Guillaume, Jolan et Mélody [</p>
+        <p>By Guillaume, Jolan et Mélody </p>
     </footer>
 </div>
 </body>
