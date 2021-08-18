@@ -23,6 +23,7 @@ class SortieController extends AbstractController
             "sortie"=>$sortie
         ]);
     }
+
     /**
      * @Route ("/sortie/ajouter", name="sortie_ajouter")
      */
