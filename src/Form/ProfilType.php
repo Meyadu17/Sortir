@@ -35,7 +35,7 @@ class ProfilType extends AbstractType
             ->add('mot_de_passe', PasswordType::class, [
                 'label' => 'Mot de passe : '
             ])
-            ->add('mail', PasswordType::class, [
+            ->add('mot_de_passe', PasswordType::class, [
                 'label' => 'Confirmation : '
             ])
             ->add('sites', TextType::class, [

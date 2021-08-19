@@ -38,7 +38,13 @@ class SortieType extends AbstractType
             ->add('infos_sortie', TextareaType::class, [
                 'label' => 'Description et infos :'
             ]);
-
         parent::buildForm($builder, $options);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Sortie::class,
+        ]);
     }
 }
