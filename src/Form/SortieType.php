@@ -5,6 +5,7 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -28,9 +29,12 @@ class SortieType extends AbstractType
                 ]
             ])
             ->add('duree', IntegerType::class,[
-            'attr' => [
-                'Durée :' => 10
-            ]
+                'attr' => [
+                    'Durée :' => 10
+                ]
+            ])
+            ->add('infos_sortie', TextareaType::class, [
+                'label' => 'Description et infos :'
             ]);
 
         parent::buildForm($builder, $options);
