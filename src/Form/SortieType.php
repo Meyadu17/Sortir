@@ -5,10 +5,12 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use App\Entity\Sortie;
+use App\Entity\Lieu;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SortieType extends AbstractType
@@ -37,7 +39,22 @@ class SortieType extends AbstractType
             ])
             ->add('infos_sortie', TextareaType::class, [
                 'label' => 'Description et infos :'
+            ])
+
+
+            ->add('sites', TextType::class, [
+                'label' => 'Lieu :'
+            ])
+            ->add('rue', TextType::class, [
+                'label' => 'Rue :'
+            ])
+            ->add('latitude', NumberType::class, [
+                'label' => 'Latitude :'
+            ])
+            ->add('longitude', NumberType::class, [
+                'label' => 'Longitude :'
             ]);
+        ;
         parent::buildForm($builder, $options);
     }
 
