@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -41,20 +42,12 @@ class SortieType extends AbstractType
                 'label' => 'Description et infos :'
             ])
 
-
-            ->add('sites', TextType::class, [
-                'label' => 'Lieu :'
-            ])
-            ->add('rue', TextType::class, [
-                'label' => 'Rue :'
-            ])
-            ->add('latitude', NumberType::class, [
-                'label' => 'Latitude :'
-            ])
-            ->add('longitude', NumberType::class, [
-                'label' => 'Longitude :'
-            ]);
-        ;
+            ->add('lieux', EntityType::class, [
+                'class' => Lieu::class,
+                'choice_label' => 'nom',
+                'label' => 'Lieu :',
+                'attr' => ['readonly' => true
+                ]]);
         parent::buildForm($builder, $options);
     }
 

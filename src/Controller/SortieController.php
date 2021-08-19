@@ -33,6 +33,8 @@ class SortieController extends AbstractController
         # Hydratation de l'instance Sortie avec les données qui proviennent de la requête
         # On utilise handleRequest et on y passe la requête en argument
         $sortieForm->handleRequest($request);
+
+        #Vérification des informations mises dans le formulaire
         if($sortieForm->isSubmitted() && $sortieForm->isValid())
         {
             $em->persist($sortie);
