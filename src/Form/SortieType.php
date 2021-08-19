@@ -2,12 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Sortie;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SortieType extends AbstractType
 {
@@ -36,7 +34,13 @@ class SortieType extends AbstractType
             ->add('infos_sortie', TextareaType::class, [
                 'label' => 'Description et infos :'
             ]);
-
         parent::buildForm($builder, $options);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Sortie::class,
+        ]);
     }
 }
