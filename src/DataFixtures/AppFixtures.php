@@ -6,6 +6,7 @@ use App\Entity\Participant;
 use App\Entity\Site;
 use App\Entity\Lieu;
 use App\Entity\Ville;
+
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -13,6 +14,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+
 
         $sites = [];
 
@@ -54,6 +56,9 @@ class AppFixtures extends Fixture
             $manager->persist($lieu);
             }
 
+
         $manager->flush();
-    }
+        }
+
+
 }
