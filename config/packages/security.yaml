@@ -28,7 +28,7 @@ security:
                 # target: app_any_route
 
             # activate different ways to authenticate
-            #https://symfony.com/doc/current/security.html#firewalls-authentication
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
