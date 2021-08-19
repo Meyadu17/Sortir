@@ -24,7 +24,7 @@ class SortieController extends AbstractController
     }
 
     /**
-     * @Route ("/sortie/ajouter", name="sortie_ajouter")
+     * @Route ("/ajouter", name="sortie_ajouter")
      */
     public function ajouter (EntityManagerInterface $em, Request $request)
     {
