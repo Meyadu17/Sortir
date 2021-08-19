@@ -9,7 +9,7 @@ Class MainController extends AbstractController
 {
 
     /**
-     * @Route ("/accueil.php", name="accueil")
+     * @Route ("/accueil", name="accueil")
      */
     public function accueil()
     {
