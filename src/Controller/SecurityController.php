@@ -12,13 +12,11 @@ class SecurityController extends AbstractController
     /**
      * @Route("/", name="connexion")
      */
-    public function connexion (AuthenticationUtils $authenticationUtils): Response
+    public function connexion(AuthenticationUtils $authenticationUtils): Response
     {
-        if ($this->getUser() && $this -> isValid()) {
-             return $this->redirectToRoute('accueil.html.twig');
-
-
-         }
+        if ($this->getUser() && $this->isValid()) {
+            return $this->redirectToRoute('accueil.html.twig');
+        }
 
         // Erreur de connexion
         $error = $authenticationUtils->getLastAuthenticationError();
