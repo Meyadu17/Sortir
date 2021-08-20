@@ -5,7 +5,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class EatFixtures extends Fixture implements DependentFixtureInterface {
+class ParticipantFixtures extends Fixture implements DependentFixtureInterface {
     public function load(ObjectManager $manager){
         for ($i = 0; $i < 10; $i++) {
             $etat = new Etat();
