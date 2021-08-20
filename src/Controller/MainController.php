@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Sortie;
 
 Class MainController extends AbstractController
 {
@@ -13,7 +14,7 @@ Class MainController extends AbstractController
      */
     public function accueil()
     {
-        $sortieRepo = $this->getDoctrine()->getrepository(Sortie::class);
+        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
         $sorties = $sortieRepo->afficherSorties();
 
         return $this->render("default/accueil.html.twig",[

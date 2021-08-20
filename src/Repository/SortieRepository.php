@@ -22,7 +22,7 @@ class SortieRepository extends ServiceEntityRepository
     public function afficherSorties()
     {
         $qb = $this->createQueryBuilder('s');
-        $qb->orderBy('s.date_heure_debut', 'ASC')
+        $qb->orderBy('s.dateHeureDebut', 'ASC')
            ->setMaxResults(7);
         $query = $qb->getQuery();
         return $query->getResult();
