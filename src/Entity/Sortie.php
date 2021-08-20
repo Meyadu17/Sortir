@@ -60,13 +60,13 @@ class Sortie
     private $urlPhoto;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Participant::class, inversedBy="sortiesOrganisees")
+     * @ORM\ManyToOne(targetEntity=Participant::class, inversedBy="sortiesOrganisees", cascade={"remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $organisateur;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="sorties")
+     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="sorties", cascade={"remove"})
      */
     private $participants;
 
