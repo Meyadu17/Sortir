@@ -53,12 +53,12 @@ class Participant implements UserInterface
     private $actif;
 
     /**
-     * @ORM\OneToMany(targetEntity=Sortie::class, mappedBy="organisateur")
+     * @ORM\OneToMany(targetEntity=Sortie::class, mappedBy="organisateur", cascade={"remove"})
      */
     private $sortiesOrganisees;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Sortie::class, inversedBy="participants")
+     * @ORM\ManyToMany(targetEntity=Sortie::class, inversedBy="participants", cascade={"remove"})
      */
     private $sorties;
 
