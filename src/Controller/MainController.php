@@ -13,7 +13,12 @@ Class MainController extends AbstractController
      */
     public function accueil()
     {
-        return $this->render("default/accueil.html.twig");
+        $sortieRepo = $this->getDoctrine()->getrepository(Sortie::class);
+        $sorties = $sortieRepo->afficherSorties();
+
+        return $this->render("default/accueil.html.twig",[
+            "sorties"=>$sorties
+        ]);
     }
  
 }

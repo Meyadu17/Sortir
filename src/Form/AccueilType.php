@@ -10,7 +10,7 @@ class AccueilType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('lieu', TextType::class,)
+            ->add('lieu', TextType::class,);
     }
 
 

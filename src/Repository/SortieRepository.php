@@ -21,17 +21,13 @@ class SortieRepository extends ServiceEntityRepository
 
     public function afficherSorties()
     {
-            $qb = $this->createQueryBuilder('s')
-            $qb->andWhere('s. = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-        return $this->createQueryBuilder('s')
+        $qb = $this->createQueryBuilder('s');
+        $qb->orderBy('s.date_heure_debut', 'ASC')
+           ->setMaxResults(7);
+        $query = $qb->getQuery();
+        return $query->getResult();
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Sortie

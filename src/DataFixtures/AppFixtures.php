@@ -1,30 +1,38 @@
 <?php
-
 namespace App\DataFixtures;
-
-
 use App\Entity\Participant;
 use App\Entity\Site;
+use App\Entity\Etat;
+use App\Entity\Sortie;
 use App\Entity\Lieu;
 use App\Entity\Ville;
-
-
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-
-
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-
         $sites = [];
-
+        for ($i = 0; $i < 10; $i++) {
+            $ville = new Ville();
+            $ville->setNom('Niort' . $i);
+            $ville->setCodePostal('7900' . $i);
+            $manager->persist($ville);
+        }
+        for ($i = 0; $i < 10; $i++) {
+            $lieu = new Lieu();
+            $lieu->setNom('Niort' . $i);
+            $lieu->setrue($i . " allée des Cornouillers");
+            $lieu->setLatitude($i . "00.0128845");
+            $lieu->setLongitude($i . "00.9856758");
+            $lieu->setVilles($ville);
+            $manager->persist($lieu);
+        }
         for ($i = 0; $i < 10; $i++) {
             $site = new Site();
             $site->setNom('Niort' . $i);
             $manager->persist($site);
-            $sites[]=$site;
+            $sites[] = $site;
         }
         for ($i = 0; $i < 10; $i++) {
             $participant = new Participant();
@@ -39,36 +47,27 @@ class AppFixtures extends Fixture
             $participant->setSites($sites[$i]);
             $manager->persist($participant);
         }
-
         for ($i = 0; $i < 10; $i++) {
-            $ville = new Ville();
-            $ville->setNom('Niort'.$i);
-            $ville->setCodePostal('7900'.$i);
-            $manager->persist($ville);
+            $etat = new Etat();
+            $etat->setLibelle('Créée');
+            $manager->persist($etat);
         }
-
-
         for ($i = 0; $i < 10; $i++) {
-            $lieu = new Lieu();
-            $lieu->setNom('Niort'.$i);
-            $lieu->setrue($i . " allée des Cornouillers");
-            $lieu->setLatitude($i . "00.0128845");
-            $lieu->setLongitude($i . "00.9856758");
-            $lieu->setVilles($ville);
-            $manager->persist($lieu);
-            }
-
-        for ($i = 0; $i < 20; $i++) {
-            $lieu = new Lieu();
-            $lieu->setNom('Nom ' . $i);
-            $lieu->setrue($i . " allée des Cornouillers");
-            $lieu->setLatitude($i . "00.0128845");
-            $lieu->setLongitude($i . "00.9856758");
-
-            $manager->persist($lieu);
+            $sortie = new Sortie();
+            $sortie->setNom('Futuroscope');
+            $sortie->setDuree('2');
+            $dateLimiteInscription = new \DateTime('now');
+            $sortie->setDateLimiteInscription($dateLimiteInscription);
+            $sortie->setInfosSortie('info d\'une sortie');
+            $sortie->setOrganisateur($participant);
+            $sortie->setSites($site);
+            $sortie->setLieux($lieu);
+            $sortie->setEtats($etat);
+            $setDateHeureDebut = new \DateTime('today');
+            $sortie->setDateHeureDebut($setDateHeureDebut);
+            $sortie->setNbInscriptionsMax('2');
+            $manager->persist($sortie);
         }
         $manager->flush();
-        }
-
-
+    }
 }
