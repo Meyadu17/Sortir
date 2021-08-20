@@ -30,6 +30,21 @@
         <INPUT type="checkbox" name="choix3" value="3"> Sorties auxquelles je ne suis pas inscrit/e<br>
         <INPUT type="checkbox" name="choix4" value="4"> Sorties passées <br>
 
+        {% for sortie in sorties %}
+        <div class="sortie">
+            <ul>
+                <li>{{ sortie.nom }}</li>
+                <li>{{ sortie.dateHeureDebut }}</li>
+                <li>{{ sortie.dateLimiteInscription }}</li>
+                <li>{{ sortie.etat }}</li>
+                <li>{{ sortie.organisateur }}</li>
+                <li><a href="#">Afficher</a></li>
+
+            </ul>
+            <a href="#">{{ sortie.nom }}</a>
+        </div>
+        {% endfor %}
+
         <button>Rechercher</button>
 
 
