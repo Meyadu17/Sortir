@@ -1,16 +1,14 @@
 <?php
-namespace App\DataFixtures;
-<<<<<<< HEAD
-=======
 
->>>>>>> 21cb3a9fc5df7a5eb42c5bb8f9565ff08ca18754
+namespace App\DataFixtures;
+
 use App\Entity\Site;
 use App\Entity\Participant;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-class ParticipantFixtures extends Fixture implements DependentFixtureInterface
-{
+
+class ParticipantFixtures extends Fixture implements DependentFixtureInterface{
     public function load(ObjectManager $manager)
     {
         for ($i = 0; $i < 10; $i++) {
@@ -34,10 +32,6 @@ class ParticipantFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             SiteFixtures::class
-<<<<<<< HEAD
         ];
-=======
-            ];
->>>>>>> 21cb3a9fc5df7a5eb42c5bb8f9565ff08ca18754
     }
 }

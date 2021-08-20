@@ -117,9 +117,8 @@ class Sortie
 
     public function setDateHeureDebut(\DateTimeInterface $dateHeureDebut): self
     {
-        $dateHeureDebut ->format('Y-m-d H:i:s');
-        $this->dateHeureDebut = $dateHeureDebut;
 
+        $this->dateHeureDebut = $dateHeureDebut->format('Y-m-d H:i:s');
 
         return $this;
     }
