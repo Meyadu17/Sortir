@@ -17,4 +17,11 @@ class EtatFixtures extends Fixture implements DependentFixtureInterface {
 
         $manager->flush();
     }
+
+    public function getDependencies()
+    {
+        return [
+
+        ];
+    }
 }

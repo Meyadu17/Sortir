@@ -17,4 +17,12 @@ class ParticipantFixtures extends Fixture implements DependentFixtureInterface {
 
         $manager->flush();
     }
+
+    public function getDependencies()
+    {
+        return [
+            ParticipantFixtures::class,
+
+        ];
+    }
 }
