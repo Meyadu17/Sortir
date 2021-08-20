@@ -1,12 +1,8 @@
 <?php
 namespace App\DataFixtures;
-<<<<<<< HEAD
-=======
-
 
 use App\Entity\Sortie;
 
->>>>>>> 8b83fe78e8434dfc377ea8c16f0429e11035665d
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
