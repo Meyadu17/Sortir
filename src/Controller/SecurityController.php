@@ -14,8 +14,8 @@ class SecurityController extends AbstractController
      */
     public function connexion(AuthenticationUtils $authenticationUtils): Response
     {
-        if ($this->getUser() && $this->isValid()) {
-            return $this->redirectToRoute('accueil.html.twig');
+        if ($this->getUser()) {
+            return $this->redirectToRoute('connexion');
         }
 
         // Erreur de connexion
@@ -27,10 +27,12 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/deconnexion", name="deconnxion")
+     * @Route("/deconnexion", name="deconnexion")
      */
     public function logout()
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        $this->get('session')->remove('user');
+        return $this->redirectToRoute('connexion');
+        #throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }
