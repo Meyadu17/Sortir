@@ -1,5 +1,9 @@
 <?php
 namespace App\DataFixtures;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 21cb3a9fc5df7a5eb42c5bb8f9565ff08ca18754
 use App\Entity\Site;
 use App\Entity\Participant;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -30,6 +34,10 @@ class ParticipantFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             SiteFixtures::class
+<<<<<<< HEAD
         ];
+=======
+            ];
+>>>>>>> 21cb3a9fc5df7a5eb42c5bb8f9565ff08ca18754
     }
 }
