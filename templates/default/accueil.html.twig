@@ -4,6 +4,41 @@
 
 {% block main %}
     <div class="sortir">
+        <h2>Filtrer les sorties</h2>
+
+        <nom>Site :</nom>
+
+        <select>Site :<
+        <option valeur="nantes">NANTES</option>
+        <option valeur="niort">NIORT</option>
+        </select>
+        <br>
+
+        <label for="Le nom de la sortie contient :">Le nom de la sortie contient :</label>
+        <input type="search" id="site-search" name="q" placeholder="search">
+        <br>
+
+        <label for="date début">Entre </label>
+        <input id="date début" type="date" name="date début" min="d/m/y" max="d/m/y">
+
+        <label for="date début">et </label>
+        <input id="date début" type="date" name="date début" min="d/m/y" max="d/m/y">
+        <br>
+
+        <INPUT type="checkbox" name="choix1" value="1"> Sorties dont je suis l'organisateur/trice<br>
+        <INPUT type="checkbox" name="choix2" value="2"> Sorties auxquelles je suis inscrit/e<br>
+        <INPUT type="checkbox" name="choix3" value="3"> Sorties auxquelles je ne suis pas inscrit/e<br>
+        <INPUT type="checkbox" name="choix4" value="4"> Sorties passées <br>
+
+        <button>Rechercher</button>
+
+
+    </div>
+
+
+
+
+
         <a href="{{ path('sortie_ajouter')}}"> Créer une sortie </a>
     </div>
 {% endblock %}
