@@ -119,6 +119,7 @@ class Sortie
     {
         $this->dateHeureDebut = $dateHeureDebut;
 
+
         return $this;
     }
 
