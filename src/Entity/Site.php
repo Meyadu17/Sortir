@@ -52,9 +52,9 @@ class Site
 
     public function setNom(string $nom): self
     {
-        $nom->nom = $nom;
+        $this->nom = $nom;
 
-        return $nom;
+        return $this;
     }
 
     /**
