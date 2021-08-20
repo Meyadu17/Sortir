@@ -1,12 +1,6 @@
 <?php
 namespace App\DataFixtures;
-<<<<<<< HEAD
-=======
-
-
 use App\Entity\Sortie;
-
->>>>>>> 8b83fe78e8434dfc377ea8c16f0429e11035665d
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -19,7 +13,6 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface {
             $dateLimiteInscription = new \DateTime('now');
             $sortie->setDateLimiteInscription($dateLimiteInscription);
             $sortie->setInfosSortie('info d\'une sortie');
-
             $participant = $this->getReference('participant'.$i);
             $sortie->setOrganisateur($participant);
             $site = $this->getReference('site'.$i);
@@ -28,7 +21,6 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface {
             $sortie->setLieux($lieu);
             $etat = $this->getReference('etat'.$i);
             $sortie->setEtats($etat);
-
             $setDateHeureDebut = new \DateTime('today');
             $sortie->setDateHeureDebut($setDateHeureDebut);
             $sortie->setNbInscriptionsMax('2');

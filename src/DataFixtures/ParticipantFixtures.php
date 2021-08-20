@@ -1,32 +1,10 @@
 <?php
-
 namespace App\DataFixtures;
-<<<<<<< HEAD
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Persistence\ObjectManager;
-class ParticipantFixtures extends Fixture implements DependentFixtureInterface {
-    public function load(ObjectManager $manager){
-        for ($i = 0; $i < 10; $i++) {
-            $etat = new Etat();
-            $etat->setLibelle('Créée');
-            $manager->persist($etat);
-            $this->addReference('etat' . $i, $etat);
-        }
-        $manager->flush();
-    }
-    public function getDependencies()
-    {
-        return [
-            ParticipantFixtures::class,
-=======
-
 use App\Entity\Site;
 use App\Entity\Participant;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-
 class ParticipantFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
@@ -48,12 +26,10 @@ class ParticipantFixtures extends Fixture implements DependentFixtureInterface
         }
         $manager->flush();
     }
-
     public function getDependencies()
     {
         return [
-            SiteFixtures::class,
->>>>>>> 8b83fe78e8434dfc377ea8c16f0429e11035665d
+            SiteFixtures::class
         ];
     }
 }
