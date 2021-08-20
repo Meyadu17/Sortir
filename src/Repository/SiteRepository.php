@@ -22,7 +22,7 @@ class SiteRepository extends ServiceEntityRepository
     // /**
     //  * @return Site[] Returns an array of Site objects
     //  */
-    /*
+
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('s')
@@ -34,7 +34,7 @@ class SiteRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Site
