@@ -20,6 +20,7 @@ class SecurityController extends AbstractController
 
         // Erreur de connexion
         $error = $authenticationUtils->getLastAuthenticationError();
+
         // Dernier identifiant utilisé par l'utilisateur
         $lastUsername = $authenticationUtils->getLastUsername();
 

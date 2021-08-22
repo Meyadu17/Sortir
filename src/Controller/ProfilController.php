@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfilController extends AbstractController
 {
     /**
-     * @Route("/", name="mon_profil")
+     * @Route("/profil", name="mon_profil")
      */
     public function monProfil(EntityManagerInterface $em, Request $request)
     {
