@@ -1,83 +1,90 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h1 class="mt-5">{{ foundEvent.name }}</h1>
+    <p class="fs-5 col-md-8">{{ foundEvent.description }}</p>
 
-    <h1 class="text-center my-4">Afficher une sortie</h1>
+    <hr class="col-3 col-md-2 mb-4">
 
-    <div class="row col-sm-10 offset-sm-1">
-        <table class="table table-light table-hover col-sm-6">
-            <tr>
-                <th>Nom de la sortie : </th>
-                <td>{{ sortie.nom }}</td>
-            </tr>
-            <tr>
-                <th>Date et heure de la sortie : </th>
-                <td>{{ sortie.dateDebut | date('d/m/Y H:i') }}</td>
-            </tr>
-            <tr>
-                <th>Date limite d'inscription : </th>
-                <td>{{ sortie.dateCloture | date('d/m/Y H:i') }}</td>
-            </tr>
-            <tr>
-                <th>Nombre de places : </th>
-                <td>{{ sortie.nbInscriptionsMax }}</td>
-            </tr>
-            <tr>
-                <th>Durée en minutes : </th>
-                <td>{{ sortie.duree }}</td>
-            </tr>
-            <tr>
-                <th>Description et infos : </th>
-                <td>{{ sortie.descriptionInfos }}</td>
-            </tr>
-        </table>
-        <table class="table table-light table-hover col-sm-6">
-            <tr>
-                <th>Campus : </th>
-                <td>{{ sortie.campus.nomCampus }}</td>
-            </tr>
-            <tr>
-                <th>Lieu : </th>
-                <td>{{ sortie.lieu.nomLieu }}</td>
-            </tr>
-            <tr>
-                <th>Rue : </th>
-                <td>{{ sortie.lieu.rue }}</td>
-            </tr>
-            <tr>
-                <th>Code Postal : </th>
-                <td>{{ sortie.lieu.ville.codePostal }}</td>
-            </tr>
-            <tr>
-                <th>Latitude : </th>
-                <td>{{ sortie.lieu.latitude }}</td>
-            </tr>
-            <tr>
-                <th>Longitude : </th>
-                <td>{{ sortie.lieu.longitude }}</td>
-            </tr>
-        </table>
-    </div>
+    {% if (foundEvent.cancellationReason) %}
 
-    <h4 class="my-3">Liste des participants inscrits</h4>
-    <div class="row">
-        <div class="col-sm-5">
-            <table class="table table-striped table-light table-bordered table-hover">
-                <th>Pseudo</th>
-                <th>Nom</th>
-                {% for inscrit in sortie.inscriptions %}
-                    <tr>
-                        <td>{{ inscrit.participant.pseudo }}</td>
-                        <td><a href="{{ path('profilParticipant',{'id': inscrit.participant.id}) }}">
-                                {{ inscrit.participant.prenom }} {{ inscrit.participant.nom | upper }}</a></td>
-                    </tr>
-                {% endfor %}
-            </table>
+        <div class="p-1 mb-3 bg-danger text-white rounded-3">
+            <div class="container-fluid py-5">
+            <p class="col-md-8 fs-7">Sortie annulée par l'organisateur : "{{ foundEvent.cancellationReason }}" </p>
         </div>
-        <div class="col-4 offset-1">
-            <a href="{{ path ("home") }}" class="btn btn-info btn-lg btn-block mt-3 p-3">Retour</a>
+    </div>
+    {% endif %}
+
+    <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+            <div class="h-100 p-5 bg-light border rounded-3">
+                <h3>Détails de la sortie</h3>
+                <br>
+                <p>Campus : {{ foundEvent.campus.name }}</p>
+                <p>Date et heure de la sortie : {{ foundEvent.dateTimeStart|date('d-m-Y H:i:s') }}</p>
+                <p>Date limite d'inscription : {{ foundEvent.registrationDeadline|date('d-m-Y H:i:s') }}</p>
+                <p>Nombres de places : {{ foundEvent.maxNumberParticipants }} </p>
+                <p>Durée : {{ foundEvent.duration }} minutes </p>
+                <a href="{{ path('event_registration', {id:foundEvent.id}) }}">
+
+                    {# Si le statut n'est pas "Ouverte" on bloque #}
+                    {# Si tu es organisateur on bloque #}
+                    {# Si le nombre de participants est atteint "complet" #}
+
+                    {% if(foundEvent.status.name == constant('App\\Utils\\Constantes::OPENED') and
+                          foundEvent.organiser != app.user and
+                          foundEvent.participants.count != foundEvent.maxNumberParticipants and
+                          not foundEvent.participants.contains(app.user))  %}
+
+                        <button class="btn-success btn mt-2">S'inscrire</button>
+                    {#
+                    {% elseif(foundEvent.organiser == app.user
+                              and date(foundEvent.dateTimeStart) > date())
+                    %}
+                        <button class="btn-success btn mt-2">Annuler</button>
+                    {% elseif(foundEvent.participants.contains(app.user)) %}
+                        <button class="btn-success btn mt-2">Se désister</button>
+                    #}
+                    {% endif %}
+
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="h-100 p-5 bg-light border rounded-3">
+                <h3>Accès</h3>
+                <br>
+                <p>Lieu : {{ foundEvent.place.name }} </p>
+                <p>Rue : {{ foundEvent.place.street }} </p>
+                <p>Ville : {{ foundEvent.place.city.postCode }}  {{ foundEvent.place.city.name }} </p>
+
+                <p>Latitude : {{  foundEvent.place.latitude }}</p>
+                <p>Longitude : {{  foundEvent.place.longitude }}</p>
+            </div>
         </div>
     </div>
 
+    <br>
+
+    <h6 class="border-bottom pb-2 mb-0">Participants</h6>
+
+    {% for participant in foundParticipants  %}
+        <div class="d-flex text-muted pt-3">
+        <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+            <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                <div class="d-flex justify-content-between">
+                    <strong class="text-gray-dark">{{ participant.firstName }} {{ participant.lastName }}</strong>
+                    <a href="{{ path('profil_view', {'id': participant.id }) }}">Voir Profil</a>
+                </div>
+                <span class="d-block">{{ participant.pseudo }}</span>
+            </div>
+        </div>
+{%  endfor %}
+
+
+
+{% endblock %}
+
+{% block title %} {{ foundEvent.name }}
 
 {% endblock %}

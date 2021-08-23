@@ -11,11 +11,13 @@
     {{ form_end(sortieForm) }}
     </div>
     <div>
-{#        {% for lieu in sortie.lieux %}#}
-{#            <div class="lieu">#}
-{#                <p>{{ lieu.latitude }}</p>#}
-{#                <p>{{ lieu.longitude }}</p>#}
-{#            </div>#}
-{#        {% endfor %}#}
+
+        {% for lieu in lieux %}
+            <div class="lieu">
+                <p>{{ lieu.latitude }}</p>
+                <p>{{ lieu.longitude }}</p>
+            </div>
+        {% endfor %}
+
     </div>
 {% endblock %}

@@ -30,7 +30,12 @@ class SortieController extends AbstractController
     public function ajouter (EntityManagerInterface $em, Request $request)
     {
         $sortie = new sortie;
-        $lieu = new lieu;
+
+        $lieuRepo = $this -> getDoctrine()->getRepository(Lieu::class);
+        $lieux = $lieuRepo -> afficherLieu();
+
+
+
         $sortieForm = $this->createForm(SortieType::class, $sortie);
         # Hydratation de l'instance Sortie avec les données qui proviennent de la requête
         # On utilise handleRequest et on y passe la requête en argument
@@ -47,7 +52,8 @@ class SortieController extends AbstractController
             ]);
         }
         return $this->render('sortie/ajouter.html.twig', [
-            "sortieForm"=>$sortieForm->createView()
+            "sortieForm"=>$sortieForm->createView(),
+            'lieu'=>$lieux
         ]);
     }
 }

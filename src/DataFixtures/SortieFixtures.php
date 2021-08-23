@@ -8,6 +8,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
 class SortieFixtures extends Fixture implements DependentFixtureInterface {
+
     public function load(ObjectManager $manager){
         for ($i = 0; $i < 10; $i++) {
             $sortie = new Sortie();
