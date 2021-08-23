@@ -1,5 +1,7 @@
 <?php
+
 namespace App\DataFixtures;
+
 use App\Entity\Lieu;
 use App\Entity\Ville;
 use Doctrine\Bundle\FixturesBundle\Fixture;

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\DataFixtures;
 
 use App\Entity\Site;
@@ -32,7 +33,6 @@ class ParticipantFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             SiteFixtures::class
-
         ];
     }
 }
