@@ -6,12 +6,15 @@
 <form method="post">
     {% if erreur %}
         <div class="alert-danger">{{ erreur.messageKey|trans(erreur.messageData, 'security') }}</div>
+<<<<<<< HEAD
     {% endif %}
 
     {% if app.user %}
         <div class="mb-3">
             Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
         </div>
+=======
+>>>>>>> cf7c6a38cd092b52a7ca32d73196721df277ce57
     {% endif %}
 
     <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
