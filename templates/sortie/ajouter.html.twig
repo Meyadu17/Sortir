@@ -4,9 +4,18 @@
 
 {% block main %}
     <h2>Créer une sortie</h2>
-
+    <div class="formSortie">
     {{ form_start(sortieForm) }}
     {{ form_widget(sortieForm) }}
     <button type="submit">Enregistrer</button>
     {{ form_end(sortieForm) }}
+    </div>
+    <div>
+        {% for lieu in sortie.lieux %}
+            <div class="lieu">
+                <p>{{ lieu.latitude }}</p>
+                <p>{{ lieu.longitude }}</p>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

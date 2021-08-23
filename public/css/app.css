@@ -16,10 +16,10 @@ img {
     color:#FFFFFF;
 }
 
-.flash-success {
+.mb-3 {
     background-color: yellowgreen;
 }
 
-.flash-error {
+.alert-danger {
     background-color: #B0413E;
 }
