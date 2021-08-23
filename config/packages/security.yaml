@@ -34,8 +34,9 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
-    # Un moyen facile de co,trôler l'accès à de grandes sections de votre site
+    # Un moyen facile de contrôler l'accès à de grandes sections de votre site
     # Note: Seul le *premier* contrôle d'accès correspondant sera utilisé
     access_control:
      - { path: ^/admin, roles: ROLE_ADMIN }
      - { path: ^/accueil, roles: ROLE_USER }
+     - { path: ^/profil, roles: ROLE_USER }
