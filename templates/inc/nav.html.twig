@@ -12,18 +12,22 @@
     </div>
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" href="{{ path('accueil') }}" title="Accueil">
-                <span class="icon mr-1"><i class="fas fa-home"></i></span>
-                Accueil
-            </a>
-            <a class="navbar-item" href="{{ path('mon_profil') }}" title="Mon Profil">
-                <span class="icon mr-1"><i class="fas fa-pen-alt"></i></span>
-                Mon Profil
-            </a>
-            <a class="navbar-item" href="{{ path('deconnexion') }}" title="Se déconnecter">
-                <span class="icon mr-1"><i class="fas fa-user"></i></span>
-                Se Déconnecter
-            </a>
+            {% if app.user %}
+                <a class="navbar-item" href="{{ path('accueil') }}" title="Accueil">
+                    <span class="icon mr-1"><i class="fas fa-home"></i></span>
+                    Accueil
+                </a>
+                <a class="navbar-item" href="{{ path('mon_profil') }}" title="Mon Profil">
+                    <span class="icon mr-1"><i class="fas fa-pen-alt"></i></span>
+                    Mon Profil
+                </a>
+                <div class="navbar-item">
+                    Vous êtes connecté en tant que {{ app.user.username }} <a href="{{ path('deconnexion') }}">
+                        <span class="icon mr-1"><i class="fas fa-user"></i></span>
+                        Se déconnecter</a>
+                </div>
+            {% endif %}
+
         </div>
     </div>
 </nav>

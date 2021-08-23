@@ -10,12 +10,12 @@
     <button type="submit">Enregistrer</button>
     {{ form_end(sortieForm) }}
     </div>
-{#    <div>#}
-{#        {% for lieu in sortie.lieux %}#}
-{#            <div class="lieu">#}
-{#                <p>{{ lieu.latitude }}</p>#}
-{#                <p>{{ lieu.longitude }}</p>#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
+    <div>
+        {% for lieu in sortie.lieux %}
+            <div class="lieu">
+                <p>{{ lieu.latitude }}</p>
+                <p>{{ lieu.longitude }}</p>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

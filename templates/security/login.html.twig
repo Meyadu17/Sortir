@@ -5,17 +5,7 @@
 {% block main %}
 <form method="post">
     {% if erreur %}
-<<<<<<< HEAD
-        <div class="alert alert-danger">{{ erreur.messageKey|trans(erreur.messageData, 'security') }}</div>
-=======
-        <div class="alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
->>>>>>> 04e4eb5bb88bb903b169f4b34c2c64b00fce068d
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
-        </div>
+        <div class="alert-danger">{{ erreur.messageKey|trans(erreur.messageData, 'security') }}</div>
     {% endif %}
 
     <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
