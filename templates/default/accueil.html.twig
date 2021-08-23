@@ -34,10 +34,10 @@
         <div class="sortie">
             <ul>
                 <li>{{ sortie.nom }}</li>
-                <li>{{ sortie.dateHeureDebut }}</li>
-                <li>{{ sortie.dateLimiteInscription }}</li>
+                <li>{{ sortie.dateHeureDebut|date("d/m/Y") }}</li>
+                <li>{{ sortie.dateLimiteInscription|date("d/m/Y") }}</li>
                 <li>{{ sortie.etat }}</li>
-                <li>{{ sortie.organisateur }}</li>
+                <li>{{ sortie.organisateur.pseudo }}</li>
                 <li><a href="#">Afficher</a></li>
 
             </ul>
