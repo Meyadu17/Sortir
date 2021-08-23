@@ -1,5 +1,4 @@
- security:
-
+security:
     # https://symfony.com/doc/current/security/experimental_authenticators.html
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#c-hashing-passwords
@@ -24,12 +23,7 @@
             provider: app_user_provider
             custom_authenticator: App\Security\LoginFormAuthenticator
             logout:
-<<<<<<< HEAD
-                path: app_logout
-            
-=======
                 path: deconnexion
->>>>>>> cf7c6a38cd092b52a7ca32d73196721df277ce57
                 # Où rediriger la déconnection
                 target: connexion
 
@@ -45,3 +39,4 @@
      - { path: ^/admin, roles: ROLE_ADMIN }
      - { path: ^/accueil, roles: ROLE_USER }
      - { path: ^/profil, roles: ROLE_USER }
+     - { path: ^/ajouter, roles: ROLE_USER }
