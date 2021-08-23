@@ -42,7 +42,6 @@ tfoot {
 .button {
     background-color: #c1c4c1;
     color: black;
-    transition-duration: 2s;
     cursor: pointer;
 }
 .button:hover {
