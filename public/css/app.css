@@ -1,6 +1,6 @@
 body
 {
-    background-color: #fff3cd;
+    background-color: #ffffff;
 }
 .box {
     box-shadow : 0 0.5em 1em -0.125em #00947e, 0 0px 0 1px #00947e;
@@ -22,4 +22,20 @@ img {
 
 .alert-danger {
     background-color: #B0413E;
+}
+
+table, th, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+table,
+td {
+    border: 1px solid #333;
+}
+
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
 }
