@@ -15,7 +15,7 @@ class SecurityController extends AbstractController
     public function connexion(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('connexion');
+            return $this->redirectToRoute('accueil');
         }
 
         // Erreur de connexion
@@ -32,6 +32,6 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-        #Cette methode peut être vide - elle est interprété par le logout key du firewall.');
+        #Cette methode peut être vide - elle est interprété par la clé de déconnexion du firewall.');
     }
 }
