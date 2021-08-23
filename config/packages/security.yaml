@@ -1,12 +1,13 @@
 security:
+
     # https://symfony.com/doc/current/security/experimental_authenticators.html
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#c-hashing-passwords
     password_hashers:
-        # use your user class name here
+        # Appel de la classe contenant des identifiants
         App\Entity\Participant:
-            # Use native password hasher, which auto-selects the best
-            # possible hashing algorithm (starting from Symfony 5.3 this is "bcrypt")
+            # Utilisez un hachage de mot de passe natif, qui sélectionne automatiquement
+            # le meilleur algorithme de hachage possible (à partir de Symfony 5.3, c'est "bcrypt)
             algorithm: auto
 
     providers:
@@ -24,17 +25,17 @@ security:
             custom_authenticator: App\Security\LoginFormAuthenticator
             logout:
                 path: app_logout
-                # where to redirect after logout
-                # target: app_any_route
+                # Où rediriger la déconnection
+                target: connexion
 
-            # activate different ways to authenticate
+            # Activer differentes façon de s'authentifier (lien ci dessous):
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
+    # Un moyen facile de co,trôler l'accès à de grandes sections de votre site
+    # Note: Seul le *premier* contrôle d'accès correspondant sera utilisé
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+    # - { path: ^/admin, roles: ROLE_ADMIN }
+    # - { path: ^/profile, roles: ROLE_USER }
