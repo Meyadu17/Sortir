@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\Site;
 use App\Entity\Sortie;
+use App\Entity\Lieu;
 use App\Form\SortieType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,6 +30,7 @@ class SortieController extends AbstractController
     public function ajouter (EntityManagerInterface $em, Request $request)
     {
         $sortie = new sortie;
+        $lieu = new lieu;
         $sortieForm = $this->createForm(SortieType::class, $sortie);
         # Hydratation de l'instance Sortie avec les données qui proviennent de la requête
         # On utilise handleRequest et on y passe la requête en argument
