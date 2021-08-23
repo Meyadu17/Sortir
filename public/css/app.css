@@ -39,3 +39,13 @@ tfoot {
     background-color: #333;
     color: #fff;
 }
+.button {
+    background-color: #c1c4c1;
+    color: black;
+    transition-duration: 2s;
+    cursor: pointer;
+}
+.button:hover {
+    border: 2px solid #008CBA;
+    color: #000000;
+}
