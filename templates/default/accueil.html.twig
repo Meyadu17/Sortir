@@ -4,9 +4,13 @@
 
 {% block main %}
     <div class="sortir">
-        <h2>Filtrer les sorties</h2>
+        <h1>Filtrer les sorties</h1>
 
         <nom>Site :</nom>
+
+        <form action = "accueil.html.twig" method = "get">
+
+{#        Selection du site#}
 
         <select>Site :
             {% for site in site %}
@@ -17,15 +21,18 @@
         </select>
         <br>
 
-        <label for="Le nom de la sortie contient :">Le nom de la sortie contient :</label>
-        <input type="search" id="site-search" name="q" placeholder="search">
+{#        Barre de recherche de la sortie#}
+
+        <label for=" ">Le nom de la sortie contient :</label>
+        <input type="search" id="nom" name="sortie" placeholder="Rechercher">
         <br>
 
+
         <label for="date début">Entre </label>
-        <input id="date_début" type="date" name="date début" min="d-m-Y" max="d/m/y">
+        <input id="date_début" type="date" name="date début" min="d-m-Y" max="d/m/Y">
 
         <label for="date début">et </label>
-        <input id="date_début" type="date" name="date début" min="d/m/y" max="d/m/y">
+        <input id="date_début" type="date" name="date début" min="d/m/Y" max="d/m/Y">
         <br>
 
         <INPUT type="checkbox" name="choix1" value="1"> Sorties dont je suis l'organisateur/trice<br>
@@ -36,7 +43,8 @@
 
         <button class="button">Rechercher</button>
         <br><br>
-        
+        </form>
+
         <div class="listSortie">
             <table style="width: 100%">
                 <tr>
