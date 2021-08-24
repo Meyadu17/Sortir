@@ -16,8 +16,9 @@ class ProfilController extends AbstractController
      */
     public function monProfil(EntityManagerInterface $em, Request $request)
     {
-
+        #Creation de l'instance utilisateur
         $participant = $this->getUser();
+        #
         $profilForm = $this->createForm(ProfilType::class, $participant);
 
         #Hydratation de l'instance de Profil avec les données qui proviennent de la requête

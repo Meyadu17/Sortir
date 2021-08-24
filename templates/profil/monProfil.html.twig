@@ -3,13 +3,12 @@
 {% block titre %} Sortir | Mon Profil {% endblock %}
 
 {% block main %}
-    <h2>Mon Profil</h2>
-
+    <h1>Mon Profil</h1>
+    <br>
+    <!-- Affichage du formulaire pour modifier le profil-->
     {{ form_start(profilForm) }}
     {{ form_widget(profilForm) }}
-    <button type="submit">Modifier</button>
+    <br>
+    <button class="button" type="submit">Modifier</button>
     {{ form_end(profilForm) }}
-
-
-
 {% endblock %}
