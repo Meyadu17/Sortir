@@ -26,16 +26,12 @@ class LieuRepository extends ServiceEntityRepository
 
     public function afficherLieu()
     {
-        $qb = $this->createQueryBuilder('l')
 
-                ->andWhere('l.villes')
-                ->andWhere('l.rue')
-                ->andWhere('l.latitude')
-                ->andWhere('l.longitude');
-            $query = $qb->getQuery();
-
-            return $query->getResult();
-
+        $qb = $this->createQueryBuilder('l');
+        $qb->join('s.sortie', 's')
+           ->addSelect('s.lieu');
+        $query = $qb->getQuery();
+        return $query->getResult();
 
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Site;
@@ -15,26 +16,24 @@ class SortieController extends AbstractController
     /**
      * @Route("/sortie{id}", name="sortie_detail", requirements={"id":"\d+"}, methods={"GET"})
      */
-    public function detail ($id)
+    public function detail($id)
     {
         $sortieRepo = $this->getDoctrine()->getRepository(site::class);
         $sortie = $sortieRepo->find($id);
         return $this->render('sortie/detail.html.twig', [
-            "sortie"=>$sortie
+            "sortie" => $sortie
         ]);
     }
 
     /**
      * @Route ("/ajouter", name="sortie_ajouter")
      */
-    public function ajouter (EntityManagerInterface $em, Request $request)
+    public function ajouter(EntityManagerInterface $em, Request $request)
     {
         $sortie = new sortie;
 
-        $lieuRepo = $this -> getDoctrine()->getRepository(Lieu::class);
-        $lieux = $lieuRepo -> afficherLieu();
-
-
+        $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
+        $lieux = $lieuRepo->findAll();
 
         $sortieForm = $this->createForm(SortieType::class, $sortie);
         # Hydratation de l'instance Sortie avec les données qui proviennent de la requête
@@ -42,18 +41,17 @@ class SortieController extends AbstractController
         $sortieForm->handleRequest($request);
 
         #Vérification des informations mises dans le formulaire
-        if($sortieForm->isSubmitted() && $sortieForm->isValid())
-        {
+        if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
             $em->persist($sortie);
             $em->flush();
             $this->addFlash('success', 'La sortie a bien été enregistée');
             return $this->redirectToRoute('sortie_detail', [
-                'id'=>$sortie->getId()
+                'id' => $sortie->getId()
             ]);
         }
         return $this->render('sortie/ajouter.html.twig', [
-            "sortieForm"=>$sortieForm->createView(),
-            'lieu'=>$lieux
+            "sortieForm" => $sortieForm->createView(),
+            'lieux' => $lieux
         ]);
     }
 }
