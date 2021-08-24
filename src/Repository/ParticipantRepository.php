@@ -35,5 +35,4 @@ class ParticipantRepository extends ServiceEntityRepository
         $query = $qb->getQuery();
         return $query->getResult();
     }
-
 }
