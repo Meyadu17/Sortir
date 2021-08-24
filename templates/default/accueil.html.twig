@@ -8,43 +8,58 @@
 
         <nom>Site :</nom>
 
-        <form action = "accueil.html.twig" method = "get">
+        <!--Formulaire de recherche de sortie-->
+        <form action="{{ 'accueil' }}" method="get">
 
-{#        Selection du site#}
+            <!--Selection du site avec une boucle for-->
+            <select>Site :
+                {% for site in site %}
+                    <div class="site" data-site=" {{ site.id }}">
+                        <option valeur="#">{{ site.nom }}</option>
+                    </div>
+                {% endfor %}
+            </select>
+            <br>
 
-        <select>Site :
-            {% for site in site %}
-            <div class="site" data-site=" {{ site.id }}">
-                <option valeur="#">{{ site.nom }}</option>
-            </div>
-            {% endfor %}
-        </select>
-        <br>
+            <!--Barre de recherche de la sortie-->
+            <label for=" ">Le nom de la sortie contient :
+                <input type="search" id="nom" name="sortie" placeholder="Rechercher">
+            </label>
+            <br>
 
-{#        Barre de recherche de la sortie#}
+            <!--Selection des dates-->
+            <label for="date début">Entre
+                <input id="date_début" type="date" name="date début" min="d-m-Y" max="d/m/Y">
+            </label>
+            <label for="date début">et
+                <input id="date_début" type="date" name="date début" min="d/m/Y" max="d/m/Y">
+            </label>
+            <br>
 
-        <label for=" ">Le nom de la sortie contient :</label>
-        <input type="search" id="nom" name="sortie" placeholder="Rechercher">
-        <br>
+            <!--Selection des types de sortie-->
+            <label>
+                <input type="checkbox" name="choix1" value="1">
+            </label>
+            Sorties dont je suis l'organisateur/trice<br>
+            <label>
+                <input type="checkbox" name="choix2" value="2">
+            </label>
+            Sorties auxquelles je suis inscrit/e<br>
+            <label>
+                <input type="checkbox" name="choix3" value="3">
+            </label>
+            Sorties auxquelles je ne suis pas inscrit/e<br>
+            <label>
+                <input type="checkbox" name="choix4" value="4">
+            </label>
+            Sorties passées
+            <br><br>
 
-
-        <label for="date début">Entre </label>
-        <input id="date_début" type="date" name="date début" min="d-m-Y" max="d/m/Y">
-
-        <label for="date début">et </label>
-        <input id="date_début" type="date" name="date début" min="d/m/Y" max="d/m/Y">
-        <br>
-
-        <INPUT type="checkbox" name="choix1" value="1"> Sorties dont je suis l'organisateur/trice<br>
-        <INPUT type="checkbox" name="choix2" value="2"> Sorties auxquelles je suis inscrit/e<br>
-        <INPUT type="checkbox" name="choix3" value="3"> Sorties auxquelles je ne suis pas inscrit/e<br>
-        <INPUT type="checkbox" name="choix4" value="4"> Sorties passées
-        <br><br>
-
-        <button class="button">Rechercher</button>
-        <br><br>
+            <button class="button">Rechercher</button>
+            <br><br>
         </form>
-        
+
+        <!--Affichage des sorties-->
         <div class="listSortie">
             <table style="width: 100%">
                 <tr>
@@ -55,6 +70,7 @@
                     <th scope="col">Organisateur</th>
                     <th scope="col">Actions</th>
                 </tr>
+
                 {% for sortie in sorties %}
                     <tr>
                         <td>{{ sortie.nom }}</td>
@@ -62,7 +78,7 @@
                         <td>{{ sortie.dateLimiteInscription|date("d/m/Y") }}</td>
                         <td>{{ sortie.etat }}</td>
                         <td>{{ sortie.organisateur.pseudo }}</td>
-                        <td><a href="#">Afficher</a></td>
+                        <td><a href="{{ path('sortie_detail',{'id': sortie.id}) }}">Afficher</a></td>
                     </tr>
                 {% endfor %}
             </table>

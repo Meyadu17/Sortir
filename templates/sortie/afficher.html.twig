@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block titre %} {{ parent() }} | Détail{% endblock %}
+
+{% block main %}
     <h1 class="mt-5">{{ foundEvent.name }}</h1>
     <p class="fs-5 col-md-8">{{ foundEvent.description }}</p>
 

@@ -9,14 +9,11 @@ use App\Entity\Sortie;
 
 Class MainController extends AbstractController
 {
-
     /**
      * @Route ("/accueil", name="accueil")
      */
     public function accueil()
     {
-//        $site = new site();
-
         $siteRepo = $this->getDoctrine()->getRepository(Site::class);
         $site=$siteRepo-> findAll();
 
@@ -28,5 +25,19 @@ Class MainController extends AbstractController
             "sorties"=>$sorties
         ]);
     }
- 
+
+    /**
+     * @Route ("/sortie/{id}", name="sortie_detail",
+     *     requirements={"id": "\d+"},
+     *     methods={"GET"})
+     */
+    public function detail($id)
+    {
+        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+        $sortie = $sortieRepo->find($id);
+
+        return$this->render('sortie/afficher.html.twig', [
+            "sorties" => $sortie
+        ]);
+    }
 }
