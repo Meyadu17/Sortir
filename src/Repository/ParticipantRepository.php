@@ -19,32 +19,21 @@ class ParticipantRepository extends ServiceEntityRepository
         parent::__construct($registry, Participant::class);
     }
 
-    // /**
-    //  * @return Participant[] Returns an array of Participant objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function modifierProfile ()
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $qb = $this->createQueryBuilder();
+        $qb ->update('App/Entity/Participant', 'p')
+            ->set('p.pseudo', ':pseudo')
+            ->set('p.prenom', ':prenom')
+            ->set('p.nom', ':nom')
+            ->set('p.telephone', ':telephone')
+            ->set('p.mail', ':mail')
+            ->set('p.mot_de_passe', ':mot_de_passe')
+            ->set('p.site', ':site')
+            ->getQuery();
 
-    /*
-    public function findOneBySomeField($value): ?Participant
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $query = $qb->getQuery();
+        return $query->getResult();
     }
-    */
+
 }
