@@ -35,7 +35,7 @@ class ProfilType extends AbstractType
             ->add('mail', EmailType::class, [
                 'label' => 'Email : '
             ])
-            ->add('mot_de_passe', RepeatedType::class, [
+            ->add('motDePasse', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les champs du mot de passe doivent correspondre',
                 'required' => true,
