@@ -40,3 +40,4 @@ security:
      - { path: ^/accueil, roles: ROLE_USER }
      - { path: ^/profil, roles: ROLE_USER }
      - { path: ^/ajouter, roles: ROLE_USER }
+     - { path: ^/sortie, roles: ROLE_USER }

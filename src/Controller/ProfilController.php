@@ -46,10 +46,16 @@ class ProfilController extends AbstractController
     }
 
     /**
-     * @Route("/profil.php?ID={id}", name="profil_detail", requirements={"id":"\d+"}, methods={"GET"})
+     * @Route("/profil{id}", name="profil_detail",
+     *     requirements={"id":"\d+"},
+     *     methods={"GET"})
      */
-    public function afficherProfil()
+    public function detail($id)
     {
-        return $this->render("profil/profil.html.twig");
+        $participantRepo = $this->getDoctrine()->getRepository(Participant::class);
+        $participant = $participantRepo->find($id);
+        return $this->render('profil/AfficherProfil.html.twig', [
+            "participant" => $participant
+        ]);
     }
 }

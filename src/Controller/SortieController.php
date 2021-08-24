@@ -16,14 +16,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class SortieController extends AbstractController
 {
     /**
-     * @Route("/sortie{id}", name="sortie_detail", requirements={"id":"\d+"}, methods={"GET"})
+     * @Route("/sortie{id}", name="sortie_detail",
+     *     requirements={"id":"\d+"},
+     *     methods={"GET"})
      */
     public function detail($id)
     {
-        $sortieRepo = $this->getDoctrine()->getRepository(site::class);
+        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+        $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
         $sortie = $sortieRepo->find($id);
-        return $this->render('sortie/detail.html.twig', [
-            "sortie" => $sortie
+        $lieu = $lieuRepo->find($id);
+        return $this->render('sortie/afficher.html.twig', [
+            "sortie" => $sortie,
+            "lieu" => $lieu
         ]);
     }
 
