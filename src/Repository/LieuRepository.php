@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Lieu;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use function Symfony\Component\String\s;
 
 /**
  * @method Lieu|null find($id, $lockMode = null, $lockVersion = null)
@@ -25,11 +26,13 @@ class LieuRepository extends ServiceEntityRepository
 
     public function afficherLieu()
     {
+
         $qb = $this->createQueryBuilder('l');
-//        $qb->join('s.sortie', 's')
-//            ->addSelect('s.lieu');
+        $qb->join('s.sortie', 's')
+           ->addSelect('s.lieu');
         $query = $qb->getQuery();
         return $query->getResult();
+
     }
 
     /*

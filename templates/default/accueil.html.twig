@@ -8,9 +8,12 @@
 
         <nom>Site :</nom>
 
-        <select>Site :<
-            <option valeur="nantes">NANTES</option>
-            <option valeur="niort">NIORT</option>
+        <select>Site :
+            {% for site in site %}
+            <div class="site" data-site=" {{ site.id }}">
+                <option valeur="#">{{ site.nom }}</option>
+            </div>
+            {% endfor %}
         </select>
         <br>
 
@@ -39,9 +42,12 @@
         <INPUT type="checkbox" name="choix1" value="1"> Sorties dont je suis l'organisateur/trice<br>
         <INPUT type="checkbox" name="choix2" value="2"> Sorties auxquelles je suis inscrit/e<br>
         <INPUT type="checkbox" name="choix3" value="3"> Sorties auxquelles je ne suis pas inscrit/e<br>
-        <INPUT type="checkbox" name="choix4" value="4"> Sorties passées <br>
+        <INPUT type="checkbox" name="choix4" value="4"> Sorties passées
         <br>
-
+        <br>
+        <button>Rechercher</button>
+        <br>
+        <br>
         <div class="listSortie">
             <table style="width: 100%">
                 <tr>
@@ -91,6 +97,7 @@
         {# </div> #}
 
     </div>
+    <br>
     <a href="{{ path('sortie_ajouter') }}" class="button">Créer une sortie</a>
 
 {% endblock %}
