@@ -16,32 +16,27 @@ class ProfilController extends AbstractController
      */
     public function monProfil(EntityManagerInterface $em, Request $request)
     {
-
-        #Instanciation de l'objet "profil"
-        $profil = new Participant();
-
-
-        #La date de creation doit être remplis automatiquement
-        #$profil->setDateCreated(new  \DateTime());
-
-        $profilForm = $this->createForm(ProfilType::class, $profil);
-
+        #Creation de l'instance utilisateur
+        $participant = $this->getUser();
+        #
+        $profilForm = $this->createForm(ProfilType::class, $participant);
 
         #Hydratation de l'instance de Profil avec les données qui proviennent de la requête
         #On utilise handleRequest et on y passe la requête en argument
         $profilForm->handleRequest($request);
         if($profilForm->isSubmitted() && $profilForm->isValid())
         {
-            $em->persist($profil);
+            $em->persist($participant);
             $em->flush();
 
             $this->addFlash('success', 'Le profil a bien été modifié');
             return $this->redirectToRoute('accueil', [
-                'id'=>$profil->getId()
+                'id'=>$participant->getId()
             ]);
         }
         return $this->render('profil/monProfil.html.twig', [
-            "profilForm" => $profilForm->createView()
+            'profilForm' => $profilForm->createView(),
+            'participant' => $participant
         ]);
     }
 

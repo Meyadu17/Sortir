@@ -56,5 +56,5 @@ class SortieController extends AbstractController
             'lieux' => $lieux
         ]);
     }
-    
+
 }
