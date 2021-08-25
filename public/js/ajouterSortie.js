@@ -39,8 +39,6 @@ $("#modalAddLocation").on("submit", "form", function(e) {
             //If server error
             Swal.fire({
                 type: "error",
-                title: Translator.trans("app.baderror"),
-                text: Translator.trans("app.trylater"),
             });
         },
         complete: function() {
