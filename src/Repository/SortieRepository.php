@@ -20,14 +20,22 @@ class SortieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sortie::class);
     }
 
-    public function findByFilter($nomSortie)
+    public function findByFilter($nomSortie, $idSite)
     {
 
-        $qb = $this->createQueryBuilder('n');
+        $qb = $this->createQueryBuilder('s');
         $qb
-            ->andWhere('n.nom like :nom')
+            ->andWhere('s.nom like :nom')
             ->setParameter(':nom', '%'.$nomSortie.'%');
+
+        if ($idSite) {
+            $qb -> andWhere('s.sites = :idSite')
+                ->setParameter(':idSite', $idSite);
+        }
+
         $query = $qb->getQuery();
         return $query->getResult();
     }
+
 }
+
