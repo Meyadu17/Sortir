@@ -20,13 +20,13 @@
     <div>Longitude : {{ lieu.longitude }}</div>
     <br>
 
+    <h2>Liste des participants</h2>
 
-        <h2>Liste des participants</h2>
     <div>
         {% for participants in sortie.participants %}
-        <ul>
-            <li>{{ participants.pseudo }}</li>
-        </ul>
+            <ul>
+                <li>{{ participants.pseudo }}</li>
+            </ul>
         {% endfor %}
     </div>
-{%  endblock %}
+{% endblock %}
