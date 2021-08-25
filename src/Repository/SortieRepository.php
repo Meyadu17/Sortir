@@ -20,40 +20,22 @@ class SortieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sortie::class);
     }
 
-    public function afficherSorties()
+    public function findByFilter($nomSortie, $idSite)
     {
+
         $qb = $this->createQueryBuilder('s');
-        $qb->orderBy('s.dateHeureDebut', 'ASC')
-           ->setMaxResults(5);
-        $query = $qb->getQuery();
-        return $query->getResult();
-    }
-
-    public function findByFilter($nomSortie)
-    {
-        $qb = $this->createQueryBuilder('n');
         $qb
-            ->andWhere('n.nom like :nom')
+            ->andWhere('s.nom like :nom')
             ->setParameter(':nom', '%'.$nomSortie.'%');
+
+        if ($idSite) {
+            $qb -> andWhere('s.sites = :idSite')
+                ->setParameter(':idSite', $idSite);
+        }
+
         $query = $qb->getQuery();
         return $query->getResult();
     }
 
-    /**
-     * @return Sortie[] Returns an array of Sortie objects
-     */
-    public function findBySite($idSite): array
-    {
-        $entityManager = $this->getEntityManager();
-        $dql = 'SELECT s
-            FROM App\Entity\Sortie s';
-        if ($idSite) {
-            $dql .= ' WHERE s.site = :idSite';
-        }
-        $query = $entityManager->createQuery($dql);
-        if ($idSite) {
-            $query->setParameter(':idSite', $idSite);
-        }
-        return $query->getResult();
-    }
 }
+
