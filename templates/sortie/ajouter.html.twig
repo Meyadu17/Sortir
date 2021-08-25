@@ -15,7 +15,7 @@
         <div class="lieux">
             {% for lieu in lieux %}
                 <div class="lieu" data-lieu="{{ lieu.id }}">
-                    <p>{{ lieu.latitude }} / {{ lieu.longitude }}</p>
+                    <p>{{ lieu.latitude }} / {{ lieu.longitude }} / {{ lieu.rue }} </p>
                 </div>
             {% endfor %}
         </div>
