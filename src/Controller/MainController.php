@@ -32,7 +32,6 @@ class MainController extends AbstractController
         // récupérer la chaine de caractère sur laquelle on va filtrer.
         $nomSortie = $request->get('recherche');
         $sorties = $sortieRepo->findByFilter($nomSortie);
-//        $nom = $sortieRepo->findBy(array());
 
         return $this->render("default/accueil.html.twig", [
             "site" => $site,
