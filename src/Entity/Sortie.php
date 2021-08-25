@@ -240,7 +240,7 @@ class Sortie
 
     public function setSites(?Site $sites): self
     {
-        $this->sites = $sites;0
+        $this->sites = $sites;
         return $this;
     }
 

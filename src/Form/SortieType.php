@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\Site;
+use App\Entity\Ville;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -23,13 +25,13 @@ class SortieType extends AbstractType
             ->add('nom', TextType::class, [
                 'label' => 'Nom de la sortie :'
             ])
-            ->add('date_heure_debut', DateTimeType::class, [
+            ->add('dateHeureDebut', DateTimeType::class, [
                 'label'=> 'Date et heure de la sortie :'
             ])
-            ->add('date_limite_inscription', DateTimeType::class, [
+            ->add('dateLimiteInscription', DateTimeType::class, [
                 'label' => 'Date limite d\'inscription :'
             ])
-            ->add('nb_inscriptions_max', IntegerType::class,[
+            ->add('nbInscriptionsMax', IntegerType::class,[
                 'attr' => [
                     'Nombre de place :' => 10
                 ]
@@ -39,7 +41,7 @@ class SortieType extends AbstractType
                     'Durée :' => 10
                 ]
             ])
-            ->add('infos_sortie', TextareaType::class, [
+            ->add('infosSortie', TextareaType::class, [
                 'label' => 'Description et infos :'
             ])
 
@@ -48,7 +50,16 @@ class SortieType extends AbstractType
                 'choice_label' => 'nom',
                 'label' => 'Lieu :',
                 'attr' => ['readonly' => true
-                ]]);
+                ]])
+            ->add('sites', EntityType::class, [
+                'class' => Site::class,
+                'choice_label' => 'nom',
+                'label' => 'Ville :',
+                'attr' => ['readonly' => true
+                ]])
+
+            ;
+
         parent::buildForm($builder, $options);
     }
 

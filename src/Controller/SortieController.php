@@ -42,7 +42,6 @@ class SortieController extends AbstractController
         $lieux = $lieuRepo->findAll();
 
         $sortieForm = $this->createForm(SortieType::class, $sortie);
-        $lieuForm = $this->createForm(LieuType::class, new lieu());
         # Hydratation de l'instance Sortie avec les données qui proviennent de la requête
         # On utilise handleRequest et on y passe la requête en argument
         $sortieForm->handleRequest($request);
@@ -65,7 +64,6 @@ class SortieController extends AbstractController
         }
         return $this->render('sortie/ajouter.html.twig', [
             "sortieForm" => $sortieForm->createView(),
-            'lieuForm' => $lieuForm->createView(),
         ]);
     }
 }
