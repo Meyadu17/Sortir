@@ -20,15 +20,6 @@ class SortieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sortie::class);
     }
 
-    public function afficherSorties()
-    {
-        $qb = $this->createQueryBuilder('s');
-        $qb->orderBy('s.dateHeureDebut', 'ASC')
-           ->setMaxResults(5);
-        $query = $qb->getQuery();
-        return $query->getResult();
-    }
-
     public function findByFilter($nomSortie)
     {
 
