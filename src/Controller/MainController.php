@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Participant;
+use App\Entity\Etat;
 use App\Entity\Site;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +15,10 @@ class MainController extends AbstractController
      */
     public function accueil()
     {
+       #Creation de l'instance etat
+       $etat = new etat;
+       $etat->getLibelle();
+
         $siteRepo = $this->getDoctrine()->getRepository(Site::class);
         $site = $siteRepo->findAll();
 
@@ -24,6 +28,7 @@ class MainController extends AbstractController
         return $this->render("default/accueil.html.twig", [
             "site" => $site,
             "sorties" => $sorties,
+            "etat" =>$etat
         ]);
     }
 }

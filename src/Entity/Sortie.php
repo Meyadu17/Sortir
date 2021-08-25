@@ -212,6 +212,7 @@ class Sortie
      */
     public function getParticipants(): Collection
     {
+
         return $this->participants;
     }
 
