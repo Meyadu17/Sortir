@@ -38,4 +38,22 @@ class SortieRepository extends ServiceEntityRepository
         $query = $qb->getQuery();
         return $query->getResult();
     }
+
+    /**
+     * @return Sortie[] Returns an array of Sortie objects
+     */
+    public function findBySite($idSite): array
+    {
+        $entityManager = $this->getEntityManager();
+        $dql = 'SELECT s
+            FROM App\Entity\Sortie s';
+        if ($idSite) {
+            $dql .= ' WHERE s.site = :idSite';
+        }
+        $query = $entityManager->createQuery($dql);
+        if ($idSite) {
+            $query->setParameter(':idSite', $idSite);
+        }
+        return $query->getResult();
+    }
 }

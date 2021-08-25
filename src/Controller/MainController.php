@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Etat;
-use App\Entity\Site;
+use App\Entity\Ville;
 use App\Repository\SortieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,11 +22,15 @@ class MainController extends AbstractController
        $etat = new etat;
        $etat->getLibelle();
 
-        $siteRepo = $this->getDoctrine()->getRepository(Site::class);
-        $site = $siteRepo->findAll();
+        $villeRepo = $this->getDoctrine()->getRepository(Ville::class);
+        $ville = $villeRepo->findAll();
 
         /** @var SortieRepository $sortieRepo */
         $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+
+        // récupérer les noms de villes depuis la BDD
+        $nomVille = $request->get($villeRepo);
+        $ville = $villeRepo->findByFilter($nomVille);
 
 
         // récupérer la chaine de caractère sur laquelle on va filtrer.
@@ -34,7 +38,7 @@ class MainController extends AbstractController
         $sorties = $sortieRepo->findByFilter($nomSortie);
 
         return $this->render("default/accueil.html.twig", [
-            "site" => $site,
+            "ville" => $ville,
             "sorties" => $sorties,
             "etat" =>$etat
         ]);

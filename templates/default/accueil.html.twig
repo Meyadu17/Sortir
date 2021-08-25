@@ -6,26 +6,28 @@
     <div class="sortir">
         <h1>Filtrer les sorties</h1>
 
-        <nom>Site :</nom>
+
 
         <!--Formulaire de recherche de sortie-->
         <form method="get">
 
             <!--Selection du site avec une boucle for-->
-            <select>Site :
+            <label for="Site">Site:</label>
+
+            <select name="site" id="site">
                 {% for site in site %}
-                    <div class="site" data-site=" {{ site.id }}">
+                    <div class="site" data-ville=" {{ site.id }}">
                         <option valeur="#">{{ site.nom }}</option>
                     </div>
                 {% endfor %}
             </select>
-            <br>
 
+            <br>
             <!--Barre de recherche de la sortie-->
             <label>Le nom de la sortie contient :
-                    <div class="sortie">
-                        <input type="text" id="recherche" name="recherche" placeholder="Rechercher"/></input>
-                    </div>
+                <div class="sortie">
+                    <input type="text" id="recherche" name="recherche" placeholder="Rechercher"/>
+                </div>
             </label>
 
 
