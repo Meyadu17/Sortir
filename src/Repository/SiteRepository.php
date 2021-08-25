@@ -18,4 +18,5 @@ class SiteRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Site::class);
     }
+
 }
