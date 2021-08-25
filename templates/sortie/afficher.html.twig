@@ -12,19 +12,21 @@
     <div>Nombre de place : {{ sortie.nbInscriptionsMax }}</div>
     <div>Durée {{ sortie.duree }} minutes</div>
     <div>Description et infos : {{ sortie.infosSortie }}</div>
-{#    <div>Campus : {{ sortie.sites }}</div><br>#}
+    <div>Campus : {{ sortie.sites.nom }}</div><br>
     <div>Lieu : {{ lieu.nom }}</div>
     <div>Rue : {{ lieu.rue }}</div>
-{#    <div>CodePostal : {{ lieu.villes }}</div><br>#}
+    <div>CodePostal : {{ lieu.villes.nom }}</div><br>
     <div>Latitude : {{ lieu.latitude }}</div>
     <div>Longitude : {{ lieu.longitude }}</div>
 
     <br>
     <div>
         <h2>Liste des participants</h2>
-        <ul>
-            <li>faire une boucle for</li>
-        </ul>
+                <ul>
+                {% for participant in sortie.participants %}
+                    <li>{{participants.nom}} {{participants.prenom}}</li>
+                {% endfor %}
+                </ul>
     </div>
 
 {#    <p class="fs-5 col-md-8">{{ sortie.infosSortie }}</p>#}

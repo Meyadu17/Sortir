@@ -1,28 +1,94 @@
+{# {% extends 'base.html.twig' %} #}
+
+{# {% block titre %} {{ parent() }} | Créer{% endblock %} #}
+
+{# {% block main %} #}
+{# <h2>Créer une sortie</h2> #}
+{# <div class="formSortie"> #}
+{# {{ form_start(sortieForm) }} #}
+{# {{ form_widget(sortieForm) }} #}
+
+{# </div> #}
+{# <div> #}
+
+
+{# <div class="lieux"> #}
+{# {% for lieu in lieux %} #}
+{# <div class="lieu" data-lieu="{{ lieu.id }}"> #}
+{# <p>{{ lieu.latitude }} / {{ lieu.longitude }}</p> #}
+{# </div> #}
+{# {% endfor %} #}
+{# </div> #}
+
+{# </div> #}
+{# <button class="button" type="submit">Enregistrer</button> #}
+{# <button class="button" href="#">Publier la sortie</button> #}
+{# {{ form_end(sortieForm) }} #}
+{# <a href="{{ path('accueil') }}" class="button">Annuler</a> #}
+{# {% endblock %} #}
+
+
 {% extends 'base.html.twig' %}
 
 {% block titre %} {{ parent() }} | Créer{% endblock %}
 
 {% block main %}
+
     <h1>Créer une sortie</h1>
-    <div class="formSortie">
+    <div class="col-gauche">
         {{ form_start(sortieForm) }}
-        {{ form_widget(sortieForm) }}
-
+        <div class="label">
+            {{ form_label(sortieForm.nom) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.nom) }}</div>
+        <div class="label">
+            {{ form_label(sortieForm.date_heure_debut) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.date_heure_debut) }}</div>
+        <div class="label">
+            {{ form_label(sortieForm.duree) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.duree) }} minutes</div>
+        <div class="label">
+            {{ form_label(sortieForm.date_limite_inscription) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.date_limite_inscription) }}</div>
+        <div class="label">
+            {{ form_label(sortieForm.nb_inscriptions_max) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.nb_inscriptions_max) }}</div>
+        <div class="label">
+            {{ form_label(sortieForm.infos_sortie) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.infos_sortie) }}</div>
     </div>
-    <div>
+    {{ form_start(sortieForm) }}
 
 
-        <div class="lieux">
-            {% for lieu in lieux %}
-                <div class="lieu" data-lieu="{{ lieu.id }}">
-                    <p>{{ lieu.latitude }} / {{ lieu.longitude }}</p>
+    <div class="col-droite">
+
+        <div class="modal" id="modalAddLocation" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            {% endfor %}
+                <div class="modal-body">
+                    {{ form_start(lieuForm, { "attr": { "id": "lieuForm" }}) }}
+                    {{ form_widget(lieuForm) }}
+                    <button class="button" id="submitFormLocation" type="submit" data-url="{{ path("accueil") }}">
+                        {{ "sortie.ajouter.lieu.confirm" }}
+                    </button>
+                    {{  form_end(lieuForm) }}
+                </div>
+            </div>
         </div>
-
     </div>
-    <button class="button" type="submit">Enregistrer</button>
-    <button class="button" href="#">Publier la sortie</button>
-    {{ form_end(sortieForm) }}
-    <a href="{{ path('accueil') }}" class="button">Annuler</a>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset("js/ajouterSortie.js") }}"></script>
 {% endblock %}
