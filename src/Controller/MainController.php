@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Etat;
+use App\Entity\Participant;
 use App\Entity\Site;
 use App\Repository\SortieRepository;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,6 +35,15 @@ class MainController extends AbstractController
         //Creation de l'instance etat
         $etat = new etat();
         $etat->getLibelle();
+
+        //
+//        $paticipant = new Participant();
+//        $paticipants
+//        $inscrit=false;
+//        if ($paticipant)
+//        {
+//
+//        }
 
         return $this->render("default/accueil.html.twig", [
             "site" => $site,
