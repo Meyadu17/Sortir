@@ -31,9 +31,11 @@ class SortieRepository extends ServiceEntityRepository
 
     public function findByFilter($nomSortie)
     {
-        $qb = $this->createQueryBuilder('r');
-        $qb->andWhere('r.nom like :nom')
-        ->setParameter(':nom', '%'.$nomSortie.'%');
+
+        $qb = $this->createQueryBuilder('n');
+        $qb
+            ->andWhere('n.nom like :nom')
+            ->setParameter(':nom', '%'.$nomSortie.'%');
         $query = $qb->getQuery();
         return $query->getResult();
     }
