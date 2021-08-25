@@ -8,7 +8,7 @@
         <div class="alert-danger">{{ erreur.messageKey|trans(erreur.messageData, 'security') }}</div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
+    <h1 class="*">Connexion</h1>
     <label for="inputPseudo">Identifiant :</label>
     <input type="text" value="{{ dernier_identifiant }}" name="pseudo" id="inputPseudo" class="form-control" autocomplete="username" required autofocus>
     <br>
@@ -20,7 +20,7 @@
            value="{{ csrf_token('authenticate') }}"
     >
 
-        <div class="checkbox mb-3">
+        <div class="checkbox">
             <label>
                 <input type="checkbox" name="_remember_me"> Se souvenir de moi
             </label>
