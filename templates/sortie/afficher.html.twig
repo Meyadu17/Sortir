@@ -4,6 +4,7 @@
 
 {% block main %}
     <h1>{{ sortie.nom }}</h1>
+
     <div class="afficher-col-gauche">
         <div>Date et heure de début : {{ sortie.dateHeureDebut|date("d/m/Y H:m") }}</div>
         <div>Date limite d'inscription : {{ sortie.dateLimiteInscription|date("d/m/Y") }}</div>
@@ -24,6 +25,7 @@
     </div>
     <br>
     <h2>Liste des participants</h2>
+
     <div>
         {% for participants in sortie.participants %}
             <ul>
