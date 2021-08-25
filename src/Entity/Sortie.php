@@ -222,7 +222,6 @@ class Sortie
             $this->participants[] = $participant;
             $participant->addSortie($this);
         }
-
         return $this;
     }
 
@@ -231,7 +230,6 @@ class Sortie
         if ($this->participants->removeElement($participant)) {
             $participant->removeSortie($this);
         }
-
         return $this;
     }
 
@@ -242,8 +240,7 @@ class Sortie
 
     public function setSites(?Site $sites): self
     {
-        $this->sites = $sites;
-
+        $this->sites = $sites;0
         return $this;
     }
 
@@ -255,7 +252,6 @@ class Sortie
     public function setLieux(?Lieu $lieux): self
     {
         $this->lieux = $lieux;
-
         return $this;
     }
 
@@ -267,8 +263,6 @@ class Sortie
     public function setEtats(?Etat $etats): self
     {
         $this->etats = $etats;
-
         return $this;
     }
-
 }

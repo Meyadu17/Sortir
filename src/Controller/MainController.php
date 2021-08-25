@@ -18,20 +18,21 @@ class MainController extends AbstractController
     public function accueil(Request $request)
 
     {
-       #Creation de l'instance etat
-       $etat = new etat;
-       $etat->getLibelle();
-
+        //----------FORMULAIRE DE RECHERCHE----------//
         $siteRepo = $this->getDoctrine()->getRepository(Site::class);
         $site = $siteRepo->findAll();
 
         /** @var SortieRepository $sortieRepo */
         $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
 
-
         // récupérer la chaine de caractère sur laquelle on va filtrer.
         $nomSortie = $request->get('recherche');
         $sorties = $sortieRepo->findByFilter($nomSortie);
+
+        //----------RESULTAT DE LA RECHERCHE----------//
+        //Creation de l'instance etat
+        $etat = new etat();
+        $etat->getLibelle();
 
         return $this->render("default/accueil.html.twig", [
             "site" => $site,
