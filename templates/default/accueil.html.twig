@@ -9,7 +9,7 @@
         <nom>Site :</nom>
 
         <!--Formulaire de recherche de sortie-->
-        <form action="{{ 'accueil' }}" method="get">
+        <form method="get">
 
             <!--Selection du site avec une boucle for-->
             <select>Site :
@@ -22,10 +22,12 @@
             <br>
 
             <!--Barre de recherche de la sortie-->
-            <label for=" ">Le nom de la sortie contient :
-                <input type="search" id="nom" name="sortie" placeholder="Rechercher">
+            <label>Le nom de la sortie contient :
+                    <div class="sortie">
+                        <input type="text" id="recherche" name="recherche" placeholder="Rechercher"/></input>
+                    </div>
             </label>
-            <br>
+
 
             <!--Selection des dates-->
             <label for="date début">Entre
@@ -55,7 +57,7 @@
             Sorties passées
             <br><br>
 
-            <button class="button">Rechercher</button>
+            <button type="submit" class="button">Rechercher</button>
             <br><br>
         </form>
 

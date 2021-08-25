@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Sortie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use http\Env\Request;
 
 /**
  * @method Sortie|null find($id, $lockMode = null, $lockVersion = null)
@@ -23,7 +24,19 @@ class SortieRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('s');
         $qb->orderBy('s.dateHeureDebut', 'ASC')
-           ->setMaxResults(20);
+           ->setMaxResults(5);
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
+    public function findByFilter($nomSortie)
+    {
+        $qb = $this->createQueryBuilder('r');
+        $qb -> andWhere()
+            ->orderBy('r.nom', 'ASC')
+
+             ->setMaxResults(5);
+
         $query = $qb->getQuery();
         return $query->getResult();
     }
