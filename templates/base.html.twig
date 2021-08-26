@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
-    <link rel="icon" href="img/favicon.png">
+    <link rel="icon" href="{{ asset('img/favicon.png') }}">
 </head>
 <body>
 
@@ -18,7 +18,7 @@
         {% include ('inc/nav.html.twig')%}
         <section>
             <div class="container has-text-centered">
-                <img src="img/image.jpg" class="imgTop" alt="image principale de site">
+                <img src="{{ asset('img/image.jpg') }}" class="imgTop" alt="image principale de site">
             </div>
 
         </section>

@@ -90,23 +90,22 @@ class SortieController extends AbstractController
      */
     public function modifier(EntityManagerInterface $em, Request $request, $id)
     {
-
-        $sortie = new sortie;
-        $sortieRepo = $this->getDoctrine()->getRepository(Etat::class);
-        $sortie = $sortieRepo->findAll();
+        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+        $sortie = $sortieRepo->find($id);
         $sortieForm = $this->createForm(SortieType::class, $sortie);
-        {# request sert à integrer les réponses du user dans l'instance de l'entité #}
-            $sortieForm->handleRequest($request);
+        // request sert à integrer les réponses du user dans l'instance de l'entité
+        $sortieForm->handleRequest($request);
 
-            if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
-                $em->persist($sortie);
-                $em->flush();
+        if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
+            $em->persist($sortie);
+            $em->flush();
 
-                $this->addFlash('success', 'La sortie a bien été modifiée');
-                return $this->redirectToRoute('accueil', [
-                    'id' => $sortie->getId()
-                ]);
-            }
+            $this->addFlash('success', 'La sortie a bien été modifiée');
+            return $this->redirectToRoute('accueil');
         }
+        return $this->render('sortie/modifier.html.twig', [
+            'sortieForm' => $sortieForm->createView()
+        ]);
     }
 }
+
