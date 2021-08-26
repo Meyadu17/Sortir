@@ -28,7 +28,11 @@ table, th, td {
     border: 2px solid black;
     border-collapse: collapse;
 }
-
+.table-scroll{
+    width:1400px;
+    height:300px;
+    overflow:scroll;
+}
 table,
 td {
     border: 1px solid #333;

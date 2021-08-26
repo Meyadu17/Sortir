@@ -48,7 +48,8 @@ class SortieController extends AbstractController
 
             if ($sortieForm->get('publier')->isClicked()) {
                 $sortie->setEtats($etat)
-                    ->setOrganisateur($this->getUser());
+                    ->setOrganisateur($this->getUser())
+                    ->addParticipant($this->getUser());
                 $em->persist($sortie);
                 $em->flush();
                 // je fais ce que je dois faire lorsque c'est publier
