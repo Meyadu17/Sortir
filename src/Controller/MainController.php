@@ -12,6 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Sortie;
+use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class MainController extends AbstractController
 {
@@ -64,18 +66,17 @@ class MainController extends AbstractController
         $nonInscrit = null;
         if ($participantFilter) {
             $nonInscrit = $this->getUser();
-
         }
         // checkbox sorties passées
         $sortieFilter = $request->get ('sortiesend') == 'on';
         $sortiesEnd = null;
         if ($sortieFilter){
-            $sortiesEnd = $this->getUser();
+            $sortiesEnd = new \DateTime();
         }
 
         // récupérer la chaine de caractère sur laquelle on va filtrer.
         $nomSortie = $request->get('recherche');
-        $sorties = $sortieRepo->findByFilter($nomSortie,$idSite,$date1,$date2,$orga,$inscrit,$sortiesEnd,$nonInscrit);
+        $sorties = $sortieRepo->findByFilter($nomSortie,$idSite,$date1,$date2,$orga,$inscrit,$nonInscrit,$sortiesEnd);
 
 
 

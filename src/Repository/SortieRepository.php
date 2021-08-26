@@ -51,10 +51,6 @@ class SortieRepository extends ServiceEntityRepository
                 ->andWhere('p = :inscrit')
                 ->setParameter(':inscrit', $inscrit );
         }
-        if ($sortiesEnd){
-            $qb ->andWhere('s.dateLimiteInscription = :sortiesEnd')
-                ->setParameter(':sortiesEnd', $sortiesEnd);
-        }
         if ($nonInscrit && !$inscrit) {
             $qbInscrit = $this->createQueryBuilder('s2')
                 ->select('s2.id')
@@ -63,6 +59,10 @@ class SortieRepository extends ServiceEntityRepository
             $qb
                 ->andWhere('s.id not in(' . $qbInscrit->getDQL() . ')')
                 ->setParameter(':inscrit', $nonInscrit);
+        }
+        if ($sortiesEnd){
+            $qb ->andWhere('s.dateHeureDebut <= :sortiesEnd')
+                ->setParameter(':sortiesEnd', $sortiesEnd);
         }
 
         $query = $qb->getQuery();
