@@ -4,6 +4,7 @@
 
 {% block main %}
     <div class="sortir">
+
         <h1>Filtrer les sorties</h1>
 
 
@@ -80,14 +81,19 @@
                         <td>{{ sortie.dateLimiteInscription|date("d/m/Y") }}</td>
                         <td>{{ sortie.etats.libelle }}</td>
                         <td><a href="{{ path('profil_detail',{'id': sortie.organisateur.id}) }}">{{ sortie.organisateur.pseudo }}</td>
-                        <td><a href="{{ path('sortie_detail',{'id': sortie.id}) }}">Afficher
-                                <form action ="/profil{id}" method="post">
-                                <input type="hidden" name="sortie" value="{{ sortie.id }}">
+                        <td><a href="{{ path('sortie_detail',{'id': sortie.id}) }}">
+                                Afficher
+                            </a>
+                            <form action ="/profil{id}" method="post">
+                                   <input type="hidden" name="sortie" value="{{ sortie.id }}">
                                 <button class="button2"type="submit">
                                     Inscription
                                 </button>
-                                </form>
-                            </a></td>
+                            </form>
+                            <a href="{{ path('sortie_detail',{'id': sortie.id}) }}">
+                                Annuler
+                            </a>
+                            </td>
                     </tr>
                 {% endfor %}
             </table>

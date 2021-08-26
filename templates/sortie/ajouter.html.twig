@@ -5,8 +5,8 @@
 {% block main %}
 
     <h1>Créer une sortie</h1>
+    {{ form_start(sortieForm) }}
     <div class="col-gauche">
-        {{ form_start(sortieForm) }}
         <div class="label">
             {{ form_label(sortieForm.nom) }}</div>
         <div class="input-group">
@@ -42,9 +42,9 @@
             {{ form_label(sortieForm.lieux) }}</div>
         <div class="input-group">
             {{ form_widget(sortieForm.lieux) }}</div>
-        {{ form_end(sortieForm) }}
-        <button class="button" type="sumbit">Enregistrer</button>
-        <button class="button" type="sumbit">Publier la sortie</button>
-        <button class="button" type="sumbit">Annuler</button>
+        {{ form_widget(sortieForm.enregistrer) }}
+        {{ form_widget(sortieForm.publier) }}
+        <a href="{{ path('accueil') }}" class="button">Annuler</a>
     </div>
+    {{ form_end(sortieForm) }}
 {% endblock %}
