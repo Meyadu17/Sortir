@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Etat;
-use App\Entity\Participant;
 use App\Entity\Sortie;
 use App\Entity\Lieu;
 use App\Form\SortieType;
@@ -78,7 +77,7 @@ class SortieController extends AbstractController
         $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
         $sortie = $sortieRepo->find($id);
         $lieu = $lieuRepo->find($id);
-        return $this->render('sortie/afficher.html.twig', [
+        return $this->render('sortie/annuler.html.twig', [
             "sortie" => $sortie,
             "lieu" => $lieu
         ]);

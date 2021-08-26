@@ -85,12 +85,18 @@
                                 Afficher
                             </a>
                             <form action ="/profil{id}" method="post">
-                                   <input type="hidden" name="sortie" value="{{ sortie.id }}">
+                                   <input type="hidden" name="inscription" value="{{ sortie.id }}">
                                 <button class="button2"type="submit">
                                     Inscription
                                 </button>
                             </form>
-                            <a href="{{ path('sortie_detail',{'id': sortie.id}) }}">
+                            <form action ="/profil{id}" method="post">
+                                <input type="hidden" name="desinscription" value="{{ sortie.id }}">
+                                <button class="button2"type="submit">
+                                    Se désinscrire
+                                </button>
+                            </form>
+                            <a href="{{ path('sortie_annuler',{'id': sortie.id}) }}">
                                 Annuler
                             </a>
                             </td>
