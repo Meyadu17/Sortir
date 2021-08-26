@@ -69,7 +69,7 @@ class SortieController extends AbstractController
     /**
      * @Route("/sortie{id}/annuler", name="sortie_annuler",
      *     requirements={"id":"\d+"},
-     *     methods={"GET"})
+     *     methods={"GET", "POST"})
      */
     public function annuler(EntityManagerInterface $em, Request $request, $id)
     {
@@ -80,25 +80,24 @@ class SortieController extends AbstractController
         $lieu = $lieuRepo->find($id);
 
         #Afficher le
-        $sortie = new sortie;
         $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
         $etat = $etatRepo->findOneBy(["libelle" => "Annulée"]);
-        $sortieForm = $this->createForm(SortieType::class, $sortie, ['cancel' => true]);
-        # Hydratation de l'instance Sortie avec les données qui proviennent de la requête
-        # On utilise handleRequest et on y passe la requête en argument
+        // On lie le formulaire et l'instance de la sortie qu'on annule
+        $sortieForm = $this->createForm(SortieType::class, $sortieAffiche, ['cancel' => true]);
+        // Hydratation de l'instance Sortie avec les données qui proviennent de la requête
+        // On utilise handleRequest et on y passe la requête en argument
         $sortieForm->handleRequest($request);
 
-        #Vérification des informations mises dans le formulaire
+        //Vérification des informations mises dans le formulaire
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
 
-            #je fais ce que je dois faire lorsque c'est publier
+        //je fais ce que je dois faire lorsque c'est publier
             if ($sortieForm->get('annuler')->isClicked()) {
-                $sortie->setEtats($etat);
-                $em->persist($sortie);
+                $sortieAffiche->setEtats($etat);
+                $em->persist($sortieAffiche);
                 $em->flush();
 
             }
-
             return $this->redirectToRoute('accueil');
         }
         return $this->render('sortie/annuler.html.twig', [
