@@ -20,7 +20,7 @@ class SortieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sortie::class);
     }
 
-    public function findByFilter($nomSortie, $idSite)
+    public function findByFilter($nomSortie, $idSite, $date1, $date2)
     {
 
         $qb = $this->createQueryBuilder('s');
@@ -31,7 +31,18 @@ class SortieRepository extends ServiceEntityRepository
         if ($idSite) {
             $qb -> andWhere('s.sites = :idSite')
                 ->setParameter(':idSite', $idSite);
+
+        if ($date1){
+            $qb ->andWhere('s.dateHeureDebut >= :date1')
+                ->setParameter(':date1', $date1);
         }
+        if ($date2){
+            $qb ->andWhere('s.dateHeureDebut <= :date2')
+                ->setParameter(':date2', $date2);
+        }
+        }
+
+
 
         $query = $qb->getQuery();
         return $query->getResult();
