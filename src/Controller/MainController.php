@@ -46,10 +46,24 @@ class MainController extends AbstractController
         // récupérer les psorties par date de fin
         $date2 = $request->get('date_fin');
 
+        // checkbox sorties organisateur
+        $orgaFilter = $request->get('organisateur') == 'on';
+        $orga = null;
+        if ($orgaFilter) {
+            $orga = $this->getUser();
+        }
+        // checkbox inscription
+        $participantFilter = $request->get ('inscrit') == 'on';
+        $inscrit = null;
+        if ($participantFilter){
+            $inscrit = $this->getUser();
+        }
+
+
 
         // récupérer la chaine de caractère sur laquelle on va filtrer.
         $nomSortie = $request->get('recherche');
-        $sorties = $sortieRepo->findByFilter($nomSortie,$idSite,$date1,$date2);
+        $sorties = $sortieRepo->findByFilter($nomSortie,$idSite,$date1,$date2,$orga,$inscrit);
 
 
 
