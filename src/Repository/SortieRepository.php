@@ -20,10 +20,11 @@ class SortieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sortie::class);
     }
 
-    public function findByFilter($nomSortie, $idSite, $date1, $date2, $orga, $inscrit)
+    public function findByFilter($nomSortie, $idSite, $date1, $date2, $orga, $inscrit,$nonInscrit,$sortiesEnd)
     {
 
         $qb = $this->createQueryBuilder('s');
+        $qb2 = $qb;
         $qb
             ->andWhere('s.nom like :nom')
             ->setParameter(':nom', '%'.$nomSortie.'%');
@@ -50,9 +51,19 @@ class SortieRepository extends ServiceEntityRepository
                 ->andWhere('p = :inscrit')
                 ->setParameter(':inscrit', $inscrit );
         }
-
-
-
+        if ($sortiesEnd){
+            $qb ->andWhere('s.dateLimiteInscription = :sortiesEnd')
+                ->setParameter(':sortiesEnd', $sortiesEnd);
+        }
+        if ($nonInscrit && !$inscrit) {
+            $qbInscrit = $this->createQueryBuilder('s2')
+                ->select('s2.id')
+                ->join('s2.participants', 'p2')
+                ->andWhere('p2 = :inscrit ');
+            $qb
+                ->andWhere('s.id not in(' . $qbInscrit->getDQL() . ')')
+                ->setParameter(':inscrit', $nonInscrit);
+        }
 
         $query = $qb->getQuery();
         return $query->getResult();
