@@ -1,45 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block titre %} {{ parent() }} | Détail{% endblock %}
+{% block titre %} {{ parent() }} | Annuler sortie{% endblock %}
 
 {% block main %}
-    <h1>Anniler une sortie</h1>
+    <h1>Annuler une sortie</h1>
 
-    <div class="afficher-col-gauche">
-        <div>Nom de la sortie : {{ sortie.nom }}</div>
-        <div>Date et heure de début : {{ sortie.dateHeureDebut|date("d/m/Y H:m") }}</div>
-        <div>Date limite d'inscription : {{ sortie.dateLimiteInscription|date("d/m/Y") }}</div>
-        <div>Nombre de place : {{ sortie.nbInscriptionsMax }}</div>
-        <div>Durée {{ sortie.duree }} minutes</div>
-        <div>Description et infos : {{ sortie.infosSortie }}</div>
-    </div>
-    <div class="afficher-col-droite">
-        <div>Campus : {{ sortie.sites.nom }}</div>
-        <br>
-        <div>Ville : {{ lieu.villes.nom }}</div>
-        <div>Lieu : {{ lieu.nom }}</div>
-        <div>Rue : {{ lieu.rue }}</div>
-        <div>CodePostal : {{ lieu.villes.codePostal }}</div>
-        <br>
-        <div>Latitude : {{ lieu.latitude }}</div>
-        <div>Longitude : {{ lieu.longitude }}</div>
-    </div>
-    <br>
-    <h2>Liste des participants inscrits:</h2>
     <div>
-        <table style="width: 25%">
-            <tr>
-                <th scope="col">Pseudo</th>
-                <th scope="col">Nom</th>
-            </tr>
-
-            {% for participants in sortie.participants %}
-                <tr>
-                    <td><a href="{{ path('profil_detail',{'id': participants.id}) }}">{{ participants.pseudo }}</td>
-                    <td><a href="{{ path('profil_detail',{'id': participants.id}) }}">{{ participants.prenom }} {{ participants.nom }}</td>
-                </tr>
-            {% endfor %}
-        </table>
+        <div>Nom de la sortie : {{ sortie.nom }}</div>
+        <div>Date de la sortie : {{ sortie.dateHeureDebut|date("d/m/Y") }}</div>
+        <div>Ville organisatrice : {{ lieu.villes.nom }}</div>
+        <div>Durée {{ sortie.duree }} minutes</div>
+        {{ form_start(sortieForm) }}
+        <div class="label">
+            {{ form_label(sortieForm.infosSortie) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.infosSortie) }}</div>
+        <button class="button" type="sumbit">Annuler</button>
+        {{ form_end(sortieForm) }}
     </div>
 
 {% endblock %}

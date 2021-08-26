@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Sortie;
 use App\Entity\Lieu;
-use App\Form\LieuType;
 use App\Form\SortieType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -66,4 +65,35 @@ class SortieController extends AbstractController
             "sortieForm" => $sortieForm->createView(),
         ]);
     }
+
+    /**
+     * @Route("/sortie{id}/annuler", name="sortie_annuler",
+     *     requirements={"id":"\d+"},
+     *     methods={"GET"})
+     */
+    public function annuler($id)
+    {
+        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+        $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
+        $sortie = $sortieRepo->find($id);
+        $lieu = $lieuRepo->find($id);
+        return $this->render('sortie/afficher.html.twig', [
+            "sortie" => $sortie,
+            "lieu" => $lieu
+        ]);
+    }
+
+//    /**
+//     * @Route("/sortie{id}/modifier", name="sortie_modifier",
+//     *     requirements={"id":"\d+"},
+//     *     methods={"GET"})
+//     */
+//    public function modifier($id)
+//    {
+//        $participantRepo = $this->getDoctrine()->getRepository(Participant::class);
+//        $participant = $participantRepo->find($id);
+//        return $this->render('profil/AfficherProfil.html.twig', [
+//            "participant" => $participant
+//        ]);
+//    }
 }
