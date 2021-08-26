@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
     <link rel="icon" href="{{ asset('img/favicon.png') }}">
 </head>
+<br>
 <body>
 
 <div class="container has-text-centered">
@@ -28,11 +29,46 @@
     <main>
         {% block main %}{% endblock %}
     </main>
-
+    <hr>
     <footer>
-        <hr>
-        ©Sortir.com | {{ "now"|date("Y") }}
-        <p>By Guillaume, Jolan et Mélody </p>
+        <div class="container">
+            <nav class="menu columns">
+                <div class="column is-two-fifth">
+                    <p class="menu-label">
+                        Général
+                    </p>
+                    <ul class="menu-list">
+                        <li><a href="{{ path('accueil') }}">Accueil</a></li>
+                        <li><a href="{{ path('connexion') }}">Connexion</a></li>
+                    </ul>
+                </div>
+                <div class="column is-two-fifth">
+                    <p class="menu-label">
+                        Comptes
+                    </p>
+                    <ul class="menu-list">
+
+                        <li><a href="{{ path('sortie_ajouter') }}">Créer une sortie</a></li>
+                        <li><a href="{{ path('mon_profil') }}">Modifier mon compte</a></li>
+                    </ul>
+                </div>
+                <div class="column is-two-fifth">
+                    <p class="menu-label">
+                        Informations légales
+                    </p>
+                    <ul class="menu-list">
+                        <li><a href="http://opensource.org/licenses/mit-license.php" target="_blank">The source code is licensed</a></li>
+                        <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">The website content is licensed</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="content has-text-centered">
+                <p>
+                     &copy;Sortir.com | <?= date('Y')?> By Guillaume LENORMAND, Jolan VANDENBROUCQUE et Mélody DELAGE
+                </p>
+            </div>
+        </div>
     </footer>
 </div>
 </body>
