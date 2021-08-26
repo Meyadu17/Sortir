@@ -2,13 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Etat;
+use App\Entity\Participant;
 use App\Entity\Sortie;
 use App\Entity\Lieu;
-use App\Form\LieuType;
 use App\Form\SortieType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -37,10 +37,8 @@ class SortieController extends AbstractController
     public function ajouter(EntityManagerInterface $em, Request $request)
     {
         $sortie = new sortie;
-
-        $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
-        $lieux = $lieuRepo->findAll();
-
+        $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
+        $etat = $etatRepo->findOneBy(["libelle" => "Créée"]);
         $sortieForm = $this->createForm(SortieType::class, $sortie);
         # Hydratation de l'instance Sortie avec les données qui proviennent de la requête
         # On utilise handleRequest et on y passe la requête en argument
@@ -48,19 +46,21 @@ class SortieController extends AbstractController
 
         #Vérification des informations mises dans le formulaire
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
-            try {
-                $sortie->setOrganisateur($this->getOrganisateur());
-                $sortie->setSites($this->getParticipants()->getSites());
 
+            if ($sortieForm->get('publier')->isClicked()) {
+                $sortie->setEtats($etat)
+                    ->setOrganisateur($this->getUser());
                 $em->persist($sortie);
                 $em->flush();
-                $this->addFlash('success', 'La sortie a bien été enregistée');
-                return $this->redirectToRoute('sortie_detail', [
-                    'id' => $sortie->getId()
-                ]);
-            } catch (Exception $e) {
-                $this->addFlash("danger", $this);
+                // je fais ce que je dois faire lorsque c'est publier
             }
+            if ($sortieForm->get('enregistrer')->isClicked()) {
+                dump('save');
+                // je fais ce que je dois faire lorsque c'est enregistrer
+            }
+
+//            $this->addFlash('success', 'La sortie a bien été enregistée');
+            return $this->redirectToRoute('accueil');
         }
         return $this->render('sortie/ajouter.html.twig', [
             "sortieForm" => $sortieForm->createView(),
