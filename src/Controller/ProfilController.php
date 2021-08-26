@@ -17,14 +17,14 @@ class ProfilController extends AbstractController
      */
     public function monProfil(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher)
     {
-        #Creation de l'instance utilisateur
+        //Creation de l'instance utilisateur
         /** @var Participant $participant */
         $participant = $this->getUser();
-        #
+        //On associe le formulaire du profil à l'instance du profile que l'on modifie
         $profilForm = $this->createForm(ProfilType::class, $participant);
 
-        #Hydratation de l'instance de Profil avec les données qui proviennent de la requête
-        #On utilise handleRequest et on y passe la requête en argument
+        //Hydratation de l'instance de Profil avec les données qui proviennent de la requête
+        //On utilise handleRequest et on y passe la requête en argument
         $profilForm->handleRequest($request);
         if($profilForm->isSubmitted() && $profilForm->isValid())
         {

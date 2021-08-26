@@ -32,6 +32,6 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-        #Cette methode peut être vide - elle est interprété par la clé de déconnexion du firewall.');
+        //Cette methode peut être vide - elle est interprété par la clé de déconnexion du firewall.');
     }
 }
