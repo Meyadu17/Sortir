@@ -19,13 +19,14 @@
                 </a>
                 <a class="navbar-item" href="{{ path('mon_profil') }}" title="Mon Profil">
                     <span class="icon mr-1"><i class="fas fa-pen-alt"></i></span>
-                    {{app.user.username}}
+                    Mon profil : {{app.user.username}}
                 </a>
                 <a class="navbar-item" href="{{ path('deconnexion') }}">
                         <span class="icon mr-1"><i class="fas fa-user"></i></span>
                     Se déconnecter
                 </a>
-
+                <a class="navbar-item">
+                    Date du jour : {{ "now"|date("d/m/Y") }}
                 </a>
             {% endif %}
 
