@@ -6,20 +6,55 @@
     <h1>Annuler une sortie</h1>
 
     <div>Nom de la sortie : </div>
-    <div>Date et heure de début : {{ sortie.dateHeureDebut|date("d/m/Y H:m") }}</div>
-    <div>Date limite d'inscription : {{ sortie.dateLimiteInscription|date("d/m/Y") }}</div>
-    <div>Nombre de place : {{ sortie.nbInscriptionsMax }}</div>
-    <div>Durée {{ sortie.duree }} minutes</div>
-    <div>Description et infos : {{ sortie.infosSortie }}</div>
+    <div>Date et heure : {{ sortie.dateHeureDebut|date("d/m/Y") }}</div>
+    <div>Ville organisatrice: {{ sortie.sites.nom }}</div>
+    <div>Lieu : {{ sortie.lieux.nom }}
+        <br> {{ sortie.lieux.rue }}
+        <br> {{ sortie.lieux.villes.codePostal }} {{ sortie.lieux.villes.nom }}</div>
 
-        <div>Ville organisatrice: {{ sortie.sites.nom }}</div>
-        <br>
-        <div>Lieu : {{ sortie.lieux.nom }}</div>
-        <div>Rue : {{ sortie.lieux.rue }}</div>
-        <div>Ville : {{ sortie.lieux.villes.codePostal }} {{ sortie.lieux.villes.nom }}</div>
-        <br>
-        <div>Latitude : {{ sortie.lieux.latitude }}</div>
-        <div>Longitude : {{ sortie.lieux.longitude }}</div>
+    <div>Description et infos : {{ sortie.infosSortie }}</div>
+    {{ form_start(sortieForm) }}
+    <div class="col-gauche">
+        <div class="label">
+            {{ form_label(sortieForm.nom) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.nom) }}</div>
+        <div class="label">
+            {{ form_label(sortieForm.dateHeureDebut) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.dateHeureDebut) }}</div>
+        <div class="label">
+            {{ form_label(sortieForm.duree) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.duree) }} minutes
+        </div>
+        <div class="label">
+            {{ form_label(sortieForm.dateLimiteInscription) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.dateLimiteInscription) }}</div>
+        <div class="label">
+            {{ form_label(sortieForm.nbInscriptionsMax) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.nbInscriptionsMax) }}</div>
+        <div class="label">
+            {{ form_label(sortieForm.infosSortie) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.infosSortie) }}</div>
     </div>
+
+        <button class="button" type="submit">
+            <a href="{{ path('accueil') }}" >Annuler la sortie
+        </button>
+    </div>
+    {{ form_end(sortieForm) }}
+
+
+    <button class="button"type="submit">
+        Retour
+    </button>
+
+
+
+
 
 {% endblock %}
