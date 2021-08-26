@@ -108,17 +108,30 @@ class SortieController extends AbstractController
         ]);
     }
 
-//    /**
-//     * @Route("/sortie{id}/modifier", name="sortie_modifier",
-//     *     requirements={"id":"\d+"},
-//     *     methods={"GET"})
-//     */
-//    public function modifier($id)
-//    {
-//        $participantRepo = $this->getDoctrine()->getRepository(Participant::class);
-//        $participant = $participantRepo->find($id);
-//        return $this->render('profil/AfficherProfil.html.twig', [
-//            "participant" => $participant
-//        ]);
-//    }
+    /**
+     * @Route("/sortie{id}/modifier", name="sortie_modifier",
+     *     requirements={"id":"\d+"},
+     *     methods={"GET"})
+     */
+    public function modifier(EntityManagerInterface $em, Request $request, $id)
+    {
+
+        $sortie = new sortie;
+        $sortieRepo = $this->getDoctrine()->getRepository(Etat::class);
+        $sortie = $sortieRepo->findAll();
+        $sortieForm = $this->createForm(SortieType::class, $sortie);
+        {# request sert à integrer les réponses du user dans l'instance de l'entité #}
+            $sortieForm->handleRequest($request);
+
+            if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
+                $em->persist($sortie);
+                $em->flush();
+
+                $this->addFlash('success', 'La sortie a bien été modifiée');
+                return $this->redirectToRoute('accueil', [
+                    'id' => $sortie->getId()
+                ]);
+            }
+        }
+    }
 }
