@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Sortie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use http\Env\Request;
 
 /**
  * @method Sortie|null find($id, $lockMode = null, $lockVersion = null)
@@ -51,10 +50,6 @@ class SortieRepository extends ServiceEntityRepository
                 ->andWhere('p = :inscrit')
                 ->setParameter(':inscrit', $inscrit );
         }
-        if ($sortiesEnd){
-            $qb ->andWhere('s.dateLimiteInscription = :sortiesEnd')
-                ->setParameter(':sortiesEnd', $sortiesEnd);
-        }
         if ($nonInscrit && !$inscrit) {
             $qbInscrit = $this->createQueryBuilder('s2')
                 ->select('s2.id')
@@ -64,7 +59,10 @@ class SortieRepository extends ServiceEntityRepository
                 ->andWhere('s.id not in(' . $qbInscrit->getDQL() . ')')
                 ->setParameter(':inscrit', $nonInscrit);
         }
-
+        if ($sortiesEnd){
+            $qb ->andWhere('s.dateHeureDebut <= :sortiesEnd')
+                ->setParameter(':sortiesEnd', $sortiesEnd);
+        }
         $query = $qb->getQuery();
         return $query->getResult();
     }
