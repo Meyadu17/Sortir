@@ -35,7 +35,7 @@ class SortieController extends AbstractController
      */
     public function ajouter(EntityManagerInterface $em, Request $request)
     {
-        $sortie = new sortie;
+        $sortie = new sortie();
         $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
         $etat = $etatRepo->findOneBy(["libelle" => "Créée"]);
         $sortieForm = $this->createForm(SortieType::class, $sortie);
@@ -71,15 +71,40 @@ class SortieController extends AbstractController
      *     requirements={"id":"\d+"},
      *     methods={"GET"})
      */
-    public function annuler($id)
+    public function annuler(EntityManagerInterface $em, Request $request, $id)
     {
+        #Afficher les infos de la sortie.
         $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
         $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
-        $sortie = $sortieRepo->find($id);
+        $sortieAffiche = $sortieRepo->find($id);
         $lieu = $lieuRepo->find($id);
+
+        #Afficher le
+        $sortie = new sortie;
+        $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
+        $etat = $etatRepo->findOneBy(["libelle" => "Annulée"]);
+        $sortieForm = $this->createForm(SortieType::class, $sortie, ['cancel' => true]);
+        # Hydratation de l'instance Sortie avec les données qui proviennent de la requête
+        # On utilise handleRequest et on y passe la requête en argument
+        $sortieForm->handleRequest($request);
+
+        #Vérification des informations mises dans le formulaire
+        if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
+
+            #je fais ce que je dois faire lorsque c'est publier
+            if ($sortieForm->get('annuler')->isClicked()) {
+                $sortie->setEtats($etat);
+                $em->persist($sortie);
+                $em->flush();
+
+            }
+
+            return $this->redirectToRoute('accueil');
+        }
         return $this->render('sortie/annuler.html.twig', [
-            "sortie" => $sortie,
-            "lieu" => $lieu
+            "sortie" => $sortieAffiche,
+            "lieu" => $lieu,
+            "sortieForm" => $sortieForm->createView(),
         ]);
     }
 
