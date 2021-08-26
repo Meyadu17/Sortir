@@ -5,18 +5,56 @@
 {% block main %}
     <h1>Annuler une sortie</h1>
 
-    <div>
-        <div>Nom de la sortie : {{ sortie.nom }}</div>
-        <div>Date de la sortie : {{ sortie.dateHeureDebut|date("d/m/Y") }}</div>
-        <div>Ville organisatrice : {{ lieu.villes.nom }}</div>
-        <div>Durée {{ sortie.duree }} minutes</div>
-        {{ form_start(sortieForm) }}
+    <div>Nom de la sortie : </div>
+    <div>Date et heure : {{ sortie.dateHeureDebut|date("d/m/Y") }}</div>
+    <div>Ville organisatrice: {{ sortie.sites.nom }}</div>
+    <div>Lieu : {{ sortie.lieux.nom }}
+        <br> {{ sortie.lieux.rue }}
+        <br> {{ sortie.lieux.villes.codePostal }} {{ sortie.lieux.villes.nom }}</div>
+
+    <div>Description et infos : {{ sortie.infosSortie }}</div>
+    {{ form_start(sortieForm) }}
+    <div class="col-gauche">
+        <div class="label">
+            {{ form_label(sortieForm.nom) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.nom) }}</div>
+        <div class="label">
+            {{ form_label(sortieForm.dateHeureDebut) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.dateHeureDebut) }}</div>
+        <div class="label">
+            {{ form_label(sortieForm.duree) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.duree) }} minutes
+        </div>
+        <div class="label">
+            {{ form_label(sortieForm.dateLimiteInscription) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.dateLimiteInscription) }}</div>
+        <div class="label">
+            {{ form_label(sortieForm.nbInscriptionsMax) }}</div>
+        <div class="input-group">
+            {{ form_widget(sortieForm.nbInscriptionsMax) }}</div>
         <div class="label">
             {{ form_label(sortieForm.infosSortie) }}</div>
         <div class="input-group">
             {{ form_widget(sortieForm.infosSortie) }}</div>
-        <button class="button" type="sumbit">Annuler</button>
-        {{ form_end(sortieForm) }}
     </div>
+
+        <button class="button" type="submit">
+            <a href="{{ path('accueil') }}" >Annuler la sortie
+        </button>
+    </div>
+    {{ form_end(sortieForm) }}
+
+
+    <button class="button"type="submit">
+        Retour
+    </button>
+
+
+
+
 
 {% endblock %}
