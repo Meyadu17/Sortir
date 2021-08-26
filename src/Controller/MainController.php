@@ -40,10 +40,19 @@ class MainController extends AbstractController
         // récupérer les noms de villes depuis la BDD
         $idSite = $request->get('site');
 
+        // récupérer les sorties par date de début
+        $date1 = $request->get('date_debut');
+
+        // récupérer les psorties par date de fin
+        $date2 = $request->get('date_fin');
+
 
         // récupérer la chaine de caractère sur laquelle on va filtrer.
         $nomSortie = $request->get('recherche');
-        $sorties = $sortieRepo->findByFilter($nomSortie,$idSite);
+        $sorties = $sortieRepo->findByFilter($nomSortie,$idSite,$date1,$date2);
+
+
+
 
         //----------RESULTAT DE LA RECHERCHE----------//
         //Creation de l'instance etat
