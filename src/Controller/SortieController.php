@@ -111,7 +111,7 @@ class SortieController extends AbstractController
     /**
      * @Route("/sortie{id}/modifier", name="sortie_modifier",
      *     requirements={"id":"\d+"},
-     *     methods={"GET"})
+     *     methods={"GET","POST"})
      */
     public function modifier(EntityManagerInterface $em, Request $request, $id)
     {
