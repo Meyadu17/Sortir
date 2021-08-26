@@ -70,7 +70,7 @@ class MainController extends AbstractController
         $sortieFilter = $request->get ('sortiesend') == 'on';
         $sortiesEnd = null;
         if ($sortieFilter){
-            $sortiesEnd = $this->getUser();
+            $sortiesEnd = $this-> get(date_default_timezone_set());
         }
 
         // récupérer la chaine de caractère sur laquelle on va filtrer.

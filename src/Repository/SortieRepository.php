@@ -52,7 +52,7 @@ class SortieRepository extends ServiceEntityRepository
                 ->setParameter(':inscrit', $inscrit );
         }
         if ($sortiesEnd){
-            $qb ->andWhere('s.dateLimiteInscription = :sortiesEnd')
+            $qb ->andWhere('s.dateHeureDebut <= :sortiesEnd')
                 ->setParameter(':sortiesEnd', $sortiesEnd);
         }
         if ($nonInscrit && !$inscrit) {
