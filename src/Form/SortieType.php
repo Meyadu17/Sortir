@@ -80,6 +80,4 @@ class SortieType extends AbstractType
         ]);
         $resolver->setAllowedTypes('cancel', 'bool');
     }
-
-
 }
