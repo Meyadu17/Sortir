@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Etat;
+use App\Entity\Participant;
 use App\Entity\Sortie;
 use App\Entity\Lieu;
 use App\Form\SortieType;
@@ -92,7 +93,7 @@ class SortieController extends AbstractController
         //Vérification des informations mises dans le formulaire
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
 
-        //je fais ce que je dois faire lorsque c'est publier
+            //je fais ce que je dois faire lorsque c'est publier
             if ($sortieForm->get('annuler')->isClicked()) {
                 $sortieAffiche->setEtats($etat);
                 $em->persist($sortieAffiche);
@@ -132,5 +133,36 @@ class SortieController extends AbstractController
             'sortieForm' => $sortieForm->createView()
         ]);
     }
+
+    /**
+     * @Route("/sortie{id}/inscrire", name="sortie_inscrire",
+     *      methods={"POST"})
+     */
+    public function inscrire(EntityManagerInterface $em, Request $request, $id)
+    {
+        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+        $sortie = $sortieRepo->find($id);
+
+        $sortie->addParticipant($this->getUser());
+        $em->persist($sortie);
+        $em->flush();
+        return $this->redirectToRoute('sortie_detail', array("id" => $id));
+    }
+
+    /**
+     * @Route("/sortie{id}/desinscrire", name="sortie_desinscrire",
+     *      methods={"POST"})
+     */
+    public function desinscrire(EntityManagerInterface $em, Request $request, $id)
+    {
+        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+        $sortie = $sortieRepo->find($id);
+
+        $sortie->removeParticipant($this->getUser());
+        $em->persist($sortie);
+        $em->flush();
+        return $this->redirectToRoute('accueil');
+    }
 }
+
 
