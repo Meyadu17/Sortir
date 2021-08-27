@@ -76,7 +76,16 @@ class MainController extends AbstractController
         return $this->render("default/accueil.html.twig", [
             "sites" => $sites,
             "sorties" => $sorties,
-            "etat" =>$etat
+            "etat" =>$etat,
+            "nomSortie" =>$nomSortie,
+            "idSite" =>$idSite,
+            "date1" =>$date1,
+            "date2" =>$date2,
+            "orga" =>$orga,
+            "inscrit" =>$inscrit,
+            "nonInscrit" =>$nonInscrit,
+            "sortiesEnd" =>$sortiesEnd,
+
         ]);
     }
 
