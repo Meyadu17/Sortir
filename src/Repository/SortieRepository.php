@@ -23,7 +23,7 @@ class SortieRepository extends ServiceEntityRepository
     {
 
         $qb = $this->createQueryBuilder('s');
-        $qb2 = $qb;
+
         $qb
             ->andWhere('s.nom like :nom')
             ->setParameter(':nom', '%'.$nomSortie.'%');
@@ -44,6 +44,7 @@ class SortieRepository extends ServiceEntityRepository
         if ($orga){
             $qb ->andWhere('s.organisateur = :orga')
                 ->setParameter(':orga', $orga);
+            
         }
         if ($inscrit){
             $qb ->join('s.participants', 'p')
