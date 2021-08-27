@@ -95,6 +95,8 @@ class Sortie
     public function __construct()
     {
         $this->participants = new ArrayCollection();
+        $this->dateLimiteInscription = new \DateTime();
+        $this->dateHeureDebut = new \DateTime();
     }
 
     public function getId(): ?int
