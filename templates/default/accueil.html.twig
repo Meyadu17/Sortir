@@ -85,13 +85,13 @@
                         <td><a href="{{ path('sortie_detail',{'id': sortie.id}) }}">
                                 Afficher
                             </a>
-                            <form action ="/profil{id}" method="post">
-                                   <input type="hidden" name="inscription" value="{{ sortie.id }}">
+                            <form action ="{{ path('sortie_inscrire',{'id':sortie.id})}}" method="post">
+                                   <input type="hidden" name="inscription" >
                                 <button class="button2"type="submit">
-                                    Inscription
+                                    S'inscrire
                                 </button>
                             </form>
-                            <form action ="/profil{id}" method="post">
+                            <form action ="{{ path('sortie_desinscrire',{'id':sortie.id})}}" method="post">
                                 <input type="hidden" name="desinscription" value="{{ sortie.id }}">
                                 <button class="button2"type="submit">
                                     Se désinscrire
