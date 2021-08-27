@@ -40,11 +40,12 @@ class SortieController extends AbstractController
         $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
         $etat = $etatRepo->findOneBy(["libelle" => "Créée"]);
         $sortieForm = $this->createForm(SortieType::class, $sortie);
-        # Hydratation de l'instance Sortie avec les données qui proviennent de la requête
-        # On utilise handleRequest et on y passe la requête en argument
+        // Hydratation de l'instance Sortie avec les données qui proviennent de la requête
+        // On utilise handleRequest et on y passe la requête en argument
+        // le handleRequest gère la requête
         $sortieForm->handleRequest($request);
 
-        #Vérification des informations mises dans le formulaire
+        //Vérification des informations mises dans le formulaire
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
 
             if ($sortieForm->get('publier')->isClicked()) {
@@ -60,7 +61,6 @@ class SortieController extends AbstractController
                 // je fais ce que je dois faire lorsque c'est enregistrer
             }
 
-//            $this->addFlash('success', 'La sortie a bien été enregistée');
             return $this->redirectToRoute('accueil');
         }
         return $this->render('sortie/ajouter.html.twig', [
@@ -75,17 +75,19 @@ class SortieController extends AbstractController
      */
     public function annuler(EntityManagerInterface $em, Request $request, $id)
     {
-        #Afficher les infos de la sortie.
+        //Afficher les infos de la sortie.
         $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
         $lieuRepo = $this->getDoctrine()->getRepository(Lieu::class);
         $sortieAffiche = $sortieRepo->find($id);
         $lieu = $lieuRepo->find($id);
 
-        #Afficher le
+        //Afficher l'etat de la sortie
         $etatRepo = $this->getDoctrine()->getRepository(Etat::class);
         $etat = $etatRepo->findOneBy(["libelle" => "Annulée"]);
+
         // On lie le formulaire et l'instance de la sortie qu'on annule
         $sortieForm = $this->createForm(SortieType::class, $sortieAffiche, ['cancel' => true]);
+
         // Hydratation de l'instance Sortie avec les données qui proviennent de la requête
         // On utilise handleRequest et on y passe la requête en argument
         $sortieForm->handleRequest($request);
@@ -125,8 +127,8 @@ class SortieController extends AbstractController
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
             $em->persist($sortie);
             $em->flush();
-
             $this->addFlash('success', 'La sortie a bien été modifiée');
+
             return $this->redirectToRoute('accueil');
         }
         return $this->render('sortie/modifier.html.twig', [
@@ -140,13 +142,13 @@ class SortieController extends AbstractController
      */
     public function inscrire(EntityManagerInterface $em, Request $request, $id)
     {
-        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
-        $sortie = $sortieRepo->find($id);
+            $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+            $sortie = $sortieRepo->find($id);
+            $sortie->addParticipant($this->getUser());
+            $em->persist($sortie);
+            $em->flush();
 
-        $sortie->addParticipant($this->getUser());
-        $em->persist($sortie);
-        $em->flush();
-        return $this->redirectToRoute('sortie_detail', array("id" => $id));
+            return $this->redirectToRoute('sortie_detail', array("id" => $id));
     }
 
     /**
@@ -157,10 +159,10 @@ class SortieController extends AbstractController
     {
         $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
         $sortie = $sortieRepo->find($id);
-
         $sortie->removeParticipant($this->getUser());
         $em->persist($sortie);
         $em->flush();
+
         return $this->redirectToRoute('accueil');
     }
 }

@@ -14,9 +14,14 @@
             <!--Selection du site avec une boucle for-->
             <label>Site:</label>
             <select name="site" id="Site">
+<<<<<<< HEAD
                 {# <option> --Sélectionner un site-- </option> #}
                 {% for site in sites %}
                     <option value="{{ site.id }}">{{ site.nom }}</option>
+=======
+                {% for site in sites %}
+                <option value="{{ site.id }}">{{ site.nom }} </option>
+>>>>>>> f99693aa0e00e249218fb0736c396b4d7b4b3803
                 {% endfor %}
             </select>
 
@@ -24,35 +29,35 @@
             <!--Barre de recherche de la sortie-->
             <label>Le nom de la sortie contient :
                 <div class="sortie">
-                    <input type="text" id="recherche" name="recherche" placeholder="Rechercher"/>
+                    <input type="text" id="recherche" name="recherche" placeholder="Rechercher" value="{{ nomSortie }}"/>
                 </div>
             </label>
 
 
             <!--Selection des dates-->
             <label for="datedebut">Entre
-                <input id="date_debut" type="date" name="date_debut" date="d/m/Y">
+                <input id="date_debut" type="date" name="date_debut" date="d/m/Y" value="{{ date1 }}">
             </label>
             <label for="datefin">et
-                <input id="date_fin" type="date" name="date_fin" date="d/m/Y">
+                <input id="date_fin" type="date" name="date_fin" date="d/m/Y" value="{{ date2 }}">
             </label>
             <br>
 
             <!--Selection des types de sortie-->
             <label>
-                <input id="organisateur" type="checkbox" name="organisateur">
+                <input type="checkbox" id="organisateur" name="organisateur" {% if orga %}checked {% endif %}>
             </label>
             Sorties dont je suis l'organisateur/trice<br>
             <label>
-                <input id="inscrit" type="checkbox" name="inscrit">
+                <input id="inscrit" type="checkbox" name="inscrit" {% if inscrit %}checked {% endif %}>
             </label>
             Sorties auxquelles je suis inscrit/e<br>
             <label>
-                <input id="noninscrit" type="checkbox" name="noninscrit">
+                <input id="noninscrit" type="checkbox" name="noninscrit" {% if nonInscrit %}checked {% endif %}>
             </label>
             Sorties auxquelles je ne suis pas inscrit/e<br>
             <label>
-                <input id="sortiesend" type="checkbox" name="sortiesend">
+                <input id="sortiesend" type="checkbox" name="sortiesend" {% if sortiesEnd %}checked {% endif %}>
             </label>
             Sorties passées
             <br><br>
