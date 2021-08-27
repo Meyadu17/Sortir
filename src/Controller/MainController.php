@@ -37,6 +37,7 @@ class MainController extends AbstractController
         if ($orgaFilter) { // si le filtre est "on"
             $orga = $this->getUser(); // on récupère l'utilisateur
         }
+
         // checkbox inscription
         $participantFilter = $request->get ('inscrit') == 'on';
         $inscrit = null;

@@ -179,13 +179,28 @@ class Sortie
 
     public function getEtat(): ?int
     {
+//        $dateHeureDebut = new Sortie();
+//        //$dateHeureDebut = $this;
+//        //$dateHeureDebut = 12/15/5236;
+//        $dateHeureDebut->getDateHeureDebut();
+//        //instantiation de la date du jour
+//        $dateDuJour = new \DateTime();
+//
+//        $etat = new etat;
+//
+//        //difference entre les deux dates
+//        $diff = date_diff($dateHeureDebut, $dateDuJour);
+//
+//        if($diff <= 1)
+//        {
+//            $etat = 'Clôturée';
+//        }
         return $this->etat;
     }
 
     public function setEtat(?int $etat): self
     {
         $this->etat = $etat;
-
         return $this;
     }
 

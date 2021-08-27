@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Sortie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @method Sortie|null find($id, $lockMode = null, $lockVersion = null)
@@ -22,7 +23,7 @@ class SortieRepository extends ServiceEntityRepository
     public function findByFilter($nomSortie, $idSite, $date1, $date2, $orga, $inscrit, $nonInscrit, $sortiesEnd)
     {
         $qb = $this->createQueryBuilder('s');
-        $qb2 = $qb;
+
         $qb
             ->andWhere('s.nom like :nom')
             ->setParameter(':nom', '%'.$nomSortie.'%');
@@ -62,9 +63,11 @@ class SortieRepository extends ServiceEntityRepository
             $qb ->andWhere('s.dateHeureDebut <= :sortiesEnd')
                 ->setParameter(':sortiesEnd', $sortiesEnd);
         }
+
         $query = $qb->getQuery();
         return $query->getResult();
     }
+
 
 }
 
