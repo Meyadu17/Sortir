@@ -18,19 +18,11 @@ class MainController extends AbstractController
     public function accueil(Request $request)
 
     {
-       #Creation de l'instance etat
-       $etat = new etat;
-       $etat->getLibelle();
-
+        //Affichage des sites
         $siteRepo = $this->getDoctrine()->getRepository(Site::class);
         $sites = $siteRepo->findAll();
 
-
-        /** @var SortieRepository $sortieRepo */
-        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
-
-
-        // récupérer les noms de villes depuis la BDD
+        // récupérer les noms du site depuis la BDD
         $idSite = $request->get('site');
 
         // récupérer les sorties par date de début
@@ -65,9 +57,19 @@ class MainController extends AbstractController
             $sortiesEnd = new \DateTime();
         }
 
+        //Affichage des sorties
+        /** @var SortieRepository $sortieRepo */
+        $sortieRepo = $this->getDoctrine()->getRepository(Sortie::class);
+
         // récupérer la chaine de caractère sur laquelle on va filtrer.
         $nomSortie = $request->get('recherche');
-        $sorties = $sortieRepo->findByFilter($nomSortie,$idSite,$date1,$date2,$orga,$inscrit,$nonInscrit,$sortiesEnd);
+
+       //Creation de l'instance etat
+       $etat = new etat;
+       $etat->getLibelle();
+
+        //Recherche avec tous les filtres
+        $sorties = $sortieRepo->findByFilter($nomSortie, $idSite, $date1, $date2, $orga, $inscrit, $nonInscrit, $sortiesEnd);
 
         //----------RESULTAT DE LA RECHERCHE----------//
         //Creation de l'instance etat

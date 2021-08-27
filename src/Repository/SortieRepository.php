@@ -19,9 +19,8 @@ class SortieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sortie::class);
     }
 
-    public function findByFilter($nomSortie, $idSite, $date1, $date2, $orga, $inscrit,$nonInscrit,$sortiesEnd)
+    public function findByFilter($nomSortie, $idSite, $date1, $date2, $orga, $inscrit, $nonInscrit, $sortiesEnd)
     {
-
         $qb = $this->createQueryBuilder('s');
         $qb2 = $qb;
         $qb
