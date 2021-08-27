@@ -33,10 +33,11 @@ class MainController extends AbstractController
         $date2 = $request->get('date_fin'); // récupère la date selectionnée par l'utilisateur
 
         // checkbox sorties organisateur
-        $orgaFilter = $request->get('organisateur') == 'on'; // création d'un filtre pour la checkbox
-        $orga = null; // sinon
+        $orgaFilter = $request->get('organisateur') == 'on'; // instanciation d'un filtre pour la checkbox
+        $orga = null;
         if ($orgaFilter) { // si le filtre est "on"
-            $orga = $this->getUser(); // on récupère l'utilisateur
+            $orga = $this->getUser(); // récupèration de l'utilisateur
+
         }
 
         // checkbox inscription
@@ -45,7 +46,6 @@ class MainController extends AbstractController
         if ($participantFilter){
             $inscrit = $this->getUser();
         }
-
         // checkbox non inscrit
         $participantFilter = $request->get ('noninscrit') == 'on';
         $nonInscrit = null;
@@ -53,11 +53,12 @@ class MainController extends AbstractController
             $nonInscrit = $this->getUser();
         }
         // checkbox sorties passées
-        $sortieFilter = $request->get ('sortiesend') == 'on';
+        $sortieFilter = $request->get ('sortiesend') == 'on'; //instanciation d'un filtre
         $sortiesEnd = null;
         if ($sortieFilter){
-            $sortiesEnd = new \DateTime();
+            $sortiesEnd = new \DateTime(); // récupération de la date du jour
         }
+
 
         //Affichage des sorties
         /** @var SortieRepository $sortieRepo */
@@ -81,7 +82,16 @@ class MainController extends AbstractController
         return $this->render("default/accueil.html.twig", [
             "sites" => $sites,
             "sorties" => $sorties,
-            "etat" =>$etat
+            "etat" =>$etat,
+            "nomSortie" =>$nomSortie,
+            "idSite" =>$idSite,
+            "date1" =>$date1,
+            "date2" =>$date2,
+            "orga" =>$orga,
+            "inscrit" =>$inscrit,
+            "nonInscrit" =>$nonInscrit,
+            "sortiesEnd" =>$sortiesEnd,
+
         ]);
     }
 

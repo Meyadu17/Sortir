@@ -44,6 +44,7 @@ class SortieRepository extends ServiceEntityRepository
         if ($orga){
             $qb ->andWhere('s.organisateur = :orga')
                 ->setParameter(':orga', $orga);
+            
         }
         if ($inscrit){
             $qb ->join('s.participants', 'p')

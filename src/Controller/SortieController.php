@@ -42,6 +42,7 @@ class SortieController extends AbstractController
         $sortieForm = $this->createForm(SortieType::class, $sortie);
         // Hydratation de l'instance Sortie avec les données qui proviennent de la requête
         // On utilise handleRequest et on y passe la requête en argument
+        // le handleRequest gère la requête
         $sortieForm->handleRequest($request);
 
         //Vérification des informations mises dans le formulaire
